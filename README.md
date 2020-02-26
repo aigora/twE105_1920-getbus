@@ -4,8 +4,8 @@ El programa a realizar es la gestión de una empresa de autobuses denominada FAS
 
 ## Integrantes del equipo
 
-Raúl Carrero Ramos, raulcarrero
-Rodrigo Márquez Benito, RodrigoMarquezB
+-Raúl Carrero Ramos, _raulcarrero_
+-Rodrigo Márquez Benito, _RodrigoMarquezB_
 
 ## Objetivos del trabajo
 

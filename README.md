@@ -1,6 +1,6 @@
 # Título del trabajo
 
-El programa a realizar es la gestión de una empresa de autobuses denominada FASTBUS
+El programa a realizar es para la gestión de una empresa de autobuses denominada FASTBUS
 
 ## Integrantes del equipo
 

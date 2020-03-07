@@ -1,11 +1,11 @@
 # Título del trabajo
 
-El programa a realizar es para la gestión de una empresa de autobuses denominada FASTBUS
+El programa a realizar es para la gestión de una empresa de autobuses denominada GETBUS
 
 ## Integrantes del equipo
 
-*_Raúl Carrero Ramos_, @raulcarrero
-*_Rodrigo Márquez Benito_, @RodrigoMarquezB
+- _Raúl Carrero Ramos_, @raulcarrero
+- _Rodrigo Márquez Benito_, @RodrigoMarquezB
 
 ## Objetivos del trabajo
 

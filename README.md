@@ -1,4 +1,4 @@
-# Título del trabajo
+# GETBUS
 
 El programa a realizar es para la gestión de una empresa de autobuses denominada GETBUS
 

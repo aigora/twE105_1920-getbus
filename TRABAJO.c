@@ -30,6 +30,8 @@ int main () {
 	int i, j, codigo, naleatorio, tarjeta[DIM];
 	char opcion;
 	
+	do {
+	
 	for (i = 0; i < N; i++) {
 		for (j = 0; j < M; j++) {
 			if (i == 0 || i == N - 1)
@@ -44,11 +46,13 @@ int main () {
 	
 	/*MENU PRINCIPAL*/
 	
-	printf ("\nBienvenidx a FASTBUS. Introduzca alguna de las opciones:\n");
+	printf ("\nBienvenidx a GETBUS. Introduzca alguna de las opciones:\n");
 	
-	printf ("M >> Mirar destinos\nC >> Comprar billetes\nR >> Registro de usuario (descuento de hasta el 10%%)\n\n");
+	printf ("M >> Mirar destinos\nC >> Comprar billetes\nR >> Registro de usuario (descuento de hasta el 10%%)\nD >> Descuentos disponibles\n");
+	printf ("S >> Servicio de comida y bebida\nA >> Disponibilidad de autobuses\n\n");
 	
 	scanf ("%c", &opcion);
+	getchar();
 	
 	switch (opcion) {
 		
@@ -92,20 +96,41 @@ int main () {
 			    
 			break;
 			
-		default:
-		   
-		    while (opcion != 'M' && opcion != 'C' && opcion != 'R') {
-		    	
-		    	getchar();
-		    	printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n");
-		        scanf ("%c", &opcion);
-
-			}
-		        //CUANDO SEA ALGUNO DE LOS CARACTERES LLAMAMOS A LA FUNCION DE CADA CASO
-	
+		case 'D':
+			
+			
+			
+			
+			
+			
 		    break;
+		    
+		case 'S':
+			
+			
+			
+			
+			
+			break;
+			
+		case 'A':
+			
+			
+			
+			
+			break;
+			
+		default:
+		
+		   printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n");
+		   
+	       break;
 	}
 
+}
+
+while (1);
+	
 	return 0;
 }
 
@@ -151,7 +176,7 @@ int PagoTarjeta (int copiatarjeta[]) {
 	/*COMPRUEBA QUE LOS NUMEROS INTRODUCIDOS NO SON NEGATIVOS*/
 	int i, contador = 0;
 	for (i = 0; i < DIM; i++) {
-		if (copiatarjeta[i] < 0)
+		if (copiatarjeta[i] < 0)  //REVISAR
 		    contador++;
 	}
 	

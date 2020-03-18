@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #define N 11
 #define M 101
-#define DIM 16
+#define DIM 16 
 
 //DEFINICION DE FUNCIONES Y DE ESTRUCTURAS
 
@@ -62,17 +62,25 @@ int main () {
 			
 		case 'C':
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
+			
 			printf ("Introduce tu numero de tarjeta numero a numero:\n");
-			for (i = 0; i < DIM; i++) {
-				scanf ("%d", &tarjeta[i]);
-			}
-				
-			while (PagoTarjeta (tarjeta) == 0); {
-			    printf ("ERROR. Algun numero introducido no es positivo\n");
-			    for (i = 0; i < DIM; i++) {
-				scanf ("%d", &tarjeta[i]);
-			    }
-			}
+
+            for (i = 0; i < DIM; i++) {
+                scanf ("%d", &tarjeta[i]);
+            }
+
+            while (PagoTarjeta(tarjeta) == 0) {
+	
+	            printf ("ERROR. Algun numero introducido no es positivo\n");
+	
+	            for (i = 0; i < DIM; i++) {
+	
+                    scanf ("%d", &tarjeta[i]);
+
+                }
+	
+	            PagoTarjeta(tarjeta);
+            }
 		
 			break;
 		case 'R':
@@ -98,7 +106,7 @@ int main () {
 			
 		case 'D':
 			
-			
+			/*FICHERO CON LOS DESCUENTOS DISPONIBLES*/
 			
 			
 			
@@ -107,7 +115,7 @@ int main () {
 		    
 		case 'S':
 			
-			
+			/*EL CLIENTE PODRA ELEGIR LOS COMPLEMENTOS QUE DESEE SEGUN LA OPCION ESCOGIDA*/
 			
 			
 			
@@ -115,7 +123,7 @@ int main () {
 			
 		case 'A':
 			
-			
+			//FICHERO EN EL CUAL APARECERAN EL NUMERO DE PLAZAS DISPONIBLES
 			
 			
 			break;
@@ -138,7 +146,6 @@ void registro (char n) {
 	//COMPRUEBA SI YA ESTAS REGISTRADO Y ADEMAS SI TU NUMERO TIENE 9 CIFRAS
 	int i, longitud;
 	
-	//EL PROGRAMA NO DEJA REGISTRARTE HASTA QUE VERIFIQUES QUE NO ERES UN ROBOT
 	scanf ("%s", cliente.nombre);
 	getchar();
 	gets (cliente.apellidos);
@@ -175,15 +182,21 @@ int CompruebaRobot (int numero, int b) {
 int PagoTarjeta (int copiatarjeta[]) {
 	/*COMPRUEBA QUE LOS NUMEROS INTRODUCIDOS NO SON NEGATIVOS*/
 	int i, contador = 0;
+	
 	for (i = 0; i < DIM; i++) {
-		if (copiatarjeta[i] < 0)  //REVISAR
-		    contador++;
+		
+		if (copiatarjeta[i] < 0) {
+            
+			contador++;
+		}
 	}
 	
-	if (contador != 0)
-	    return 0;
-	else 
-	    return 1;
+	if (contador != 0) {
+		return 0;
+	}
+    else {
+    	return 1;
+	}
 }
 
 

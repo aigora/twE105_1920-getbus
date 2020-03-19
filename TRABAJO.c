@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
 #include <time.h>
 #include <stdlib.h>
 #define N 11
@@ -26,9 +25,9 @@ int PagoTarjeta (int copiatarjeta[]);
 int main () {
 	
 	/*ENCABEZADO DEL PROGRAMA*/
-	
-	int i, j, codigo, naleatorio, tarjeta[DIM];
-	char opcion;
+	FILE *dest;
+	int i, j, codigo, naleatorio, tarjeta[DIM], contador = 0;
+	char opcion, car;
 	
 	do {
 	
@@ -53,18 +52,28 @@ int main () {
 	
 	scanf ("%c", &opcion);
 	getchar();
+	printf ("\n");
 	
 	switch (opcion) {
 		
 		case 'M':
 			//LEE FICHERO CON LOS DESTINOS INCLUIDOS PRECIOS
+			printf ("Autobuses con salida desde Madrid. Todos los precios en euros (ida y vuelta):\n\n");
+			dest = fopen ("destinos.txt", "r");
+			do {
+				contador = fscanf(dest, "%c", &car);
+				printf("%c", car);
+			}
+			while (contador != EOF);
+	
+			fclose (dest);
+			
 			break;
 			
 		case 'C':
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
 			
 			printf ("Introduce tu numero de tarjeta numero a numero:\n");
-
             for (i = 0; i < DIM; i++) {
                 scanf ("%d", &tarjeta[i]);
             }
@@ -72,11 +81,9 @@ int main () {
             while (PagoTarjeta(tarjeta) == 0) {
 	
 	            printf ("ERROR. Algun numero introducido no es positivo\n");
-	
 	            for (i = 0; i < DIM; i++) {
-	
-                    scanf ("%d", &tarjeta[i]);
-
+	            	
+                    scanf ("%d", &tarjeta[i]);  //REALIZARLO CON NUMERO ENTERO Y OPERADOR RESTO MEJOR
                 }
 	
 	            PagoTarjeta(tarjeta);
@@ -130,7 +137,7 @@ int main () {
 			
 		default:
 		
-		   printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n");
+		   printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n\n");
 		   
 	       break;
 	}

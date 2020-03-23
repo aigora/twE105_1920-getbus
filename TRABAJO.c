@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #define N 11
 #define M 101
-#define DIM 16 
+#define DIM 10
 
 //DEFINICION DE FUNCIONES Y DE ESTRUCTURAS
 
@@ -20,13 +20,12 @@ int CompruebaRobot (int numero, int b);
 
 int NumAleatorio (int a);
 
-int PagoTarjeta (int copiatarjeta[]);
-
 int main () {
 	
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
-	int i, j, codigo, naleatorio, tarjeta[DIM], contador = 0;
+	int i, j, codigo, naleatorio, contador = 0, v[DIM], resto, tarjeta[DIM], n = DIM-1;
+	long int numtarjeta;
 	char opcion, car;
 	
 	do {
@@ -73,23 +72,34 @@ int main () {
 		case 'C':
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
 			
-			printf ("Introduce tu numero de tarjeta numero a numero:\n");
-            for (i = 0; i < DIM; i++) {
-                scanf ("%d", &tarjeta[i]);
-            }
-
-            while (PagoTarjeta(tarjeta) == 0) {
-	
-	            printf ("ERROR. Algun numero introducido no es positivo\n");
-	            for (i = 0; i < DIM; i++) {
-	            	
-                    scanf ("%d", &tarjeta[i]);  //REALIZARLO CON NUMERO ENTERO Y OPERADOR RESTO MEJOR
-                }
-	
-	            PagoTarjeta(tarjeta);
-            }
+			printf ("Introduce tu numero de tarjeta (max 10 cifras):\n");
+        
+            scanf ("%d", &numtarjeta);
+            i = 0;    
+            while (numtarjeta > 0) {
+            	
+              v[i] = numtarjeta % 10;
+              numtarjeta = numtarjeta / 10;
+              i++;
+			  }
+			
+			for (i = 0; i < DIM; i++) {
+			    	
+			  tarjeta[i] = v[n];
+			  n--;
+		      }
+		     	
+		    printf ("Tu numero de tarjeta es:\n");
+		     	
+		    for (i = 0; i < DIM; i++) {
+		   	
+		      printf ("%d ", tarjeta[i]);
+		    }
+			getchar();
+			printf ("\n\n");
 		
 			break;
+			
 		case 'R':
 			
 			//FUNCION REGISTRO DE USUARIO USO DE ESTRUCTURAS (FUNCION COMPRUEBA ROBOT FUNCION SRAND)
@@ -186,25 +196,6 @@ int CompruebaRobot (int numero, int b) {
 	
 }
 
-int PagoTarjeta (int copiatarjeta[]) {
-	/*COMPRUEBA QUE LOS NUMEROS INTRODUCIDOS NO SON NEGATIVOS*/
-	int i, contador = 0;
-	
-	for (i = 0; i < DIM; i++) {
-		
-		if (copiatarjeta[i] < 0) {
-            
-			contador++;
-		}
-	}
-	
-	if (contador != 0) {
-		return 0;
-	}
-    else {
-    	return 1;
-	}
-}
 
 
 

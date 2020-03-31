@@ -74,7 +74,7 @@ int main () {
 			
 			printf ("Introduce tu numero de tarjeta:\n");
         
-            scanf ("%lld", &numtarjeta);
+            scanf ("%llu", &numtarjeta);
             i = 0;    
             while (numtarjeta > 0) {
             	

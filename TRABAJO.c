@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #define N 11
 #define M 101
-#define DIM 10
+#define DIM 16
 
 //DEFINICION DE FUNCIONES Y DE ESTRUCTURAS
 
@@ -24,8 +24,8 @@ int main () {
 	
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
-	int i, j, codigo, naleatorio, contador = 0, v[DIM], resto, tarjeta[DIM], n = DIM-1;
-	long int numtarjeta;
+	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1;
+    unsigned long long int numtarjeta;
 	char opcion, car;
 	
 	do {
@@ -72,30 +72,26 @@ int main () {
 		case 'C':
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
 			
-			printf ("Introduce tu numero de tarjeta (max 10 cifras):\n");
+			printf ("Introduce tu numero de tarjeta:\n");
         
-            scanf ("%d", &numtarjeta);
+            scanf ("%lld", &numtarjeta);
             i = 0;    
             while (numtarjeta > 0) {
             	
               v[i] = numtarjeta % 10;
               numtarjeta = numtarjeta / 10;
               i++;
-			  }
+			}
+			
+			printf ("Tu numero de tarjeta es:\n");
 			
 			for (i = 0; i < DIM; i++) {
 			    	
 			  tarjeta[i] = v[n];
+			  printf ("%d ", tarjeta[i]);
 			  n--;
 		      }
-		     	
-		    printf ("Tu numero de tarjeta es:\n");
-		     	
-		    for (i = 0; i < DIM; i++) {
-		   	
-		      printf ("%d ", tarjeta[i]);
-		    }
-			getchar();
+		
 			printf ("\n\n");
 		
 			break;

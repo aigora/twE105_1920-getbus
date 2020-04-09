@@ -71,8 +71,8 @@ int main () {
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
 			
 			printf ("Introduce tu numero de tarjeta:\n");
-        
-            scanf ("%llu", &numtarjeta);
+			
+			scanf ("%llu", &numtarjeta);
             i = 0;    
             while (numtarjeta > 0) {
             	
@@ -88,7 +88,7 @@ int main () {
 			  tarjeta[i] = v[n];
 			  printf ("%d ", tarjeta[i]);
 			  n--;
-		      }
+		    }
 		
 			printf ("\n\n");
 		

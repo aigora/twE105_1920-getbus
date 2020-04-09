@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 #include <stdlib.h>
 #define N 11
 #define M 101
@@ -9,12 +8,11 @@
 //DEFINICION DE FUNCIONES Y DE ESTRUCTURAS
 
 struct {
-    char nombre[20];
-    char apellidos[30];
+    char nombre[100];
     char telefono[15];
 } cliente;
 
-void registro (char n); 
+void registro (char op); 
 
 int CompruebaRobot (int numero, int b);
 
@@ -111,7 +109,7 @@ int main () {
 			    getchar();
 			}
 			
-		    printf ("Introduce tu nombre, apellidos y numero de telefono\n");
+		    printf ("Introduce tu nombre y apellidos\n");
 			//LLAMADA A LA FUNCION si y solo si no eres un robot
 			registro (opcion);
 			    
@@ -155,23 +153,65 @@ while (1);
 	return 0;
 }
 
-void registro (char n) {
+void registro (char op) {
 	//COMPRUEBA SI YA ESTAS REGISTRADO Y ADEMAS SI TU NUMERO TIENE 9 CIFRAS
-	int i, longitud;
 	
-	scanf ("%s", cliente.nombre);
-	getchar();
-	gets (cliente.apellidos);
-	scanf ("%s", cliente.telefono);
-	longitud = strlen (cliente.telefono);
+	FILE *registro;
+	
+	int n = 100, encontrado = 0, longitud;
+	
+	char nom[n];
+	
+	registro = fopen ("registro.txt", "r");
+	
+	gets (nom); 
+	
+	while (fgets (cliente.nombre, n, registro) != NULL) {
 		
-	while (longitud != 9) {
-	    printf ("ERROR. Tu numero no tiene 9 cifras\n");
-	    scanf ("%s", cliente.telefono);
-	    longitud = strlen (cliente.telefono);
+		if (strncmp(nom, cliente.nombre, strlen(nom)) == 0) {
+			
+			encontrado = 1;
+		}
 	}
+    
+    fclose (registro);
+    
+    if (encontrado == 1) {
+    	
+    	printf ("Tu nombre y numero de telefono estan registrados\n\n");
+	}
+    
+    else {
+    	
+    	registro = fopen ("registro.txt", "a");
+    	
+    	printf ("Tu nombre no figura en el registro. Registrate ahora:\n");
+    	
+    	gets (cliente.nombre);
+    	
+    	printf ("Introduce un telefono de contacto\n");
+    	
+    	scanf ("%s", cliente.telefono);
+    	
+	    longitud = strlen (cliente.telefono);
+		
+	    while (longitud != 9) {
+	    	
+	       printf ("ERROR. Tu numero no tiene 9 cifras\n");
+	       scanf ("%s", cliente.telefono);
+	       longitud = strlen (cliente.telefono);
+	    }
+	    
+	    fputs (cliente.nombre, registro); 
+	    
+	    fprintf (registro, " ");
 
-	//FALTAN COSAS
+        fprintf (registro, "%s", cliente.telefono);
+    	
+    	fprintf (registro, "\n");
+    	
+    	fclose (registro);
+	}
 }
 
 int NumAleatorio (int a) {
@@ -189,7 +229,6 @@ int CompruebaRobot (int numero, int b) {
 		return 1;
 	else 
 	    return 0;
-	
 }
 
 

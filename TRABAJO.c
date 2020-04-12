@@ -193,20 +193,20 @@ void registro (char op) {
     	
     	printf ("Introduce un telefono de contacto\n");
     	
-    	scanf ("%s", cliente.telefono);
-    	
-	    longitud = strlen (cliente.telefono);
+		scanf ("%s", cliente.telefono);
 		
-	    while (longitud != 9) {
-	    	
-	       printf ("ERROR. Tu numero no tiene 9 cifras\n");
-	       scanf ("%s", cliente.telefono);
-	       longitud = strlen (cliente.telefono);
-	    }
-	    
-	    fputs (cliente.nombre, registro); 
-	    
-	    fprintf (registro, " ");
+		longitud = strlen (cliente.telefono);
+		
+		while (longitud != 9) {
+			
+		  printf ("ERROR. Tu numero no tiene 9 cifras\n");
+		  scanf ("%s", cliente.telefono);
+		  longitud = strlen (cliente.telefono);
+		}
+		
+		fputs (cliente.nombre, registro);
+		
+		fprintf (registro, " ");
 
         fprintf (registro, "%s", cliente.telefono);
     	

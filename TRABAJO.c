@@ -200,7 +200,6 @@ void registro (char op) {
 		while (longitud != 9) {
 			
 		    printf ("ERROR. Tu numero no tiene 9 cifras\n");
-		    
 		    scanf ("%s", cliente.telefono);
 		    longitud = strlen (cliente.telefono);
 		}

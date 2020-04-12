@@ -58,8 +58,8 @@ int main () {
 			printf ("Autobuses con salida desde Madrid. Todos los precios en euros (ida y vuelta):\n\n");
 			dest = fopen ("destinos.txt", "r");
 			do {
-				contador = fscanf(dest, "%c", &car);
-				printf("%c", car);
+			  contador = fscanf(dest, "%c", &car);
+			  printf("%c", car);
 			}
 			while (contador != EOF);
 	
@@ -73,12 +73,14 @@ int main () {
 			printf ("Introduce tu numero de tarjeta:\n");
 			
 			scanf ("%llu", &numtarjeta);
-            i = 0;    
-            while (numtarjeta > 0) {
-            	
-              v[i] = numtarjeta % 10;
-              numtarjeta = numtarjeta / 10;
-              i++;
+			
+			i = 0;
+			
+			while (numtarjeta > 0) { 
+			
+			v[i] = numtarjeta % 10;
+			numtarjeta = numtarjeta / 10;
+			i++;
 			}
 			
 			printf ("Tu numero de tarjeta es:\n");
@@ -88,7 +90,7 @@ int main () {
 			  tarjeta[i] = v[n];
 			  printf ("%d ", tarjeta[i]);
 			  n--;
-		    }
+			}
 		
 			printf ("\n\n");
 		
@@ -103,10 +105,10 @@ int main () {
 			getchar();
 			
 			while (CompruebaRobot (codigo, naleatorio) != 1) {
-			
-				printf ("Introduce de nuevo el codigo: %d\n");
-			    scanf ("%d", &codigo);
-			    getchar();
+				
+			   printf ("Introduce de nuevo el codigo: %d\n");
+			   scanf ("%d", &codigo);
+			   getchar();
 			}
 			
 			printf ("Introduce tu nombre y apellidos\n");
@@ -175,10 +177,10 @@ void registro (char op) {
 	}
 	
 	fclose (registro);
-    
-    if (encontrado == 1) {
-    	
-    	printf ("Tu nombre y numero de telefono estan registrados\n\n");
+	
+	if (encontrado == 1) {
+	
+	   printf ("Tu nombre y numero de telefono estan registrados\n\n");
 	}
 	
 	else {

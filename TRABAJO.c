@@ -23,7 +23,7 @@ int main () {
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
 	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1;
-    unsigned long long int numtarjeta;
+	unsigned long long int numtarjeta;
 	char opcion, car;
 	
 	do {
@@ -98,7 +98,7 @@ int main () {
 			
 			//FUNCION REGISTRO DE USUARIO USO DE ESTRUCTURAS (FUNCION COMPRUEBA ROBOT FUNCION SRAND)
 			naleatorio = NumAleatorio(1);
-	        printf ("Verificacion de codigo: %d\n", naleatorio);
+			printf ("Verificacion de codigo: %d\n", naleatorio);
 			scanf ("%d", &codigo);
 			getchar();
 			
@@ -109,7 +109,7 @@ int main () {
 			    getchar();
 			}
 			
-		    printf ("Introduce tu nombre y apellidos\n");
+			printf ("Introduce tu nombre y apellidos\n");
 			//LLAMADA A LA FUNCION si y solo si no eres un robot
 			registro (opcion);
 			    
@@ -140,8 +140,8 @@ int main () {
 			break;
 			
 		default:
-		
-		   printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n\n");
+			
+			printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n\n");
 		   
 	       break;
 	}
@@ -173,15 +173,15 @@ void registro (char op) {
 			encontrado = 1;
 		}
 	}
-    
-    fclose (registro);
+	
+	fclose (registro);
     
     if (encontrado == 1) {
     	
     	printf ("Tu nombre y numero de telefono estan registrados\n\n");
 	}
-    
-    else {
+	
+	else {
     	
     	registro = fopen ("registro.txt", "a");
     	
@@ -218,7 +218,7 @@ int NumAleatorio (int a) {
 	
 	int num;
 	srand (time(0)); /*GENERADOR NUMERO ALEATORIO*/
-    num = rand()%50001;
+	num = rand()%50001;
     
 	return num;
 }

@@ -5,7 +5,7 @@
 #define M 101
 #define DIM 16
 #define A 50 //NUMERO DE PLAZAS DE CADA BUS
-#define B 9 //NUMERO DE BUSES
+#define B 8 //NUMERO DE BUSES
 
 //DEFINICION DE FUNCIONES Y DE ESTRUCTURAS
 
@@ -24,6 +24,8 @@ int CompruebaRobot (int numero, int b);
 
 int NumAleatorio (int a);
 
+void imprime (int v[B]);
+
 int main () {
 	
 	/*ENCABEZADO DEL PROGRAMA*/
@@ -34,7 +36,7 @@ int main () {
 	unsigned long long int numtarjeta;
 	char opcion, car;
 	
-	autobuses bus[B] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; //VECTOR DE ESTRUCTURAS INICIALIZADO PARA EVITAR ERRORES
+	autobuses bus[B] = {0, 0, 0, 0, 0, 0, 0, 0}; //VECTOR DE ESTRUCTURAS INICIALIZADO PARA EVITAR ERRORES
 	
 	do {
 	
@@ -55,7 +57,7 @@ int main () {
 	printf ("\nBienvenidx a GETBUS. Introduzca alguna de las opciones:\n");
 	
 	printf ("M >> Mirar destinos\nC >> Comprar billetes\nR >> Registro de usuario (descuento de hasta el 10%%)\nD >> Descuentos disponibles\n");
-	printf ("S >> Servicio de comida y bebida\nA >> Disponibilidad de autobuses\n\n");
+	printf ("S >> Servicio de comida y bebida\n\n");
 	
 	scanf ("%c", &opcion);
 	getchar();
@@ -91,16 +93,17 @@ int main () {
 					printf ("Madrid-Sevilla\n");
 					
 					buses = fopen ("buses.txt", "r");
+					
 					i = 0;
+					
 					fin = fscanf (buses, "%d", &disponibles);
 					
 					while (fin != EOF) {
-					
-					   vec[i] = disponibles; //GUARDO EL Nº DE PLAZAS LIBRES DE CADA BUS EN UN VECTOR
-					   i++;
-					   fin = fscanf (buses, "%d", &disponibles);
+						
+						vec[i] = disponibles;
+						i++;
+						fin = fscanf (buses, "%d", &disponibles);
 					}
-					
 					fclose (buses);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
@@ -118,7 +121,7 @@ int main () {
 					while (nplazas > vec[op-1]) {
 						
 						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-						scanf ("%d", &nplazas);	
+						scanf ("%d", &nplazas);
 					}
 					
 					precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO 
@@ -141,16 +144,9 @@ int main () {
 					
 					vec[op-1] = (vec[op-1] - contador); //MODIFICO EL NUMERO DE PLAZAS LIBRES
 					
-					buses = fopen ("buses.txt", "w");
-					
-					for (i = 0; i < B; i++) {
-						
-						fprintf (buses, "%d\n", vec[i]);
-					}
+					imprime (vec);
 					
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
-					
-					fclose (buses);
 					
 				break;
 				
@@ -209,18 +205,11 @@ int main () {
 						}
 					}
 					
-					vec[op-1] = (vec[op-1] - contador); 
+					vec[op-1] = (vec[op-1] - contador);
 					
-					buses = fopen ("buses.txt", "w");
-					
-					for (i = 0; i < B; i++) {
-						
-						fprintf (buses, "%d\n", vec[i]);
-					}
+					imprime (vec);
 					
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
-					
-					fclose (buses);
  				    
 				break;
 				
@@ -281,16 +270,9 @@ int main () {
 					
 					vec[op-1] = (vec[op-1] - contador);
 					
-					buses = fopen ("buses.txt", "w");
-					
-					for (i = 0; i < B; i++) {
-						
-						fprintf (buses, "%d\n", vec[i]);
-					}
+					imprime (vec);
 					
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
-					
-					fclose (buses);
 					
 				break;
 				
@@ -351,16 +333,9 @@ int main () {
 					
 					vec[op-1] = (vec[op-1] - contador);
 					
-					buses = fopen ("buses.txt", "w");
-					
-					for (i = 0; i < B; i++) {
-						
-						fprintf (buses, "%d\n", vec[i]);
-					}
+					imprime (vec);
 					
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
-					
-					fclose (buses);
 					
 				break;
 				
@@ -421,16 +396,9 @@ int main () {
 					
 					vec[op-1] = (vec[op-1] - contador);
 					
-					buses = fopen ("buses.txt", "w");
-					
-					for (i = 0; i < B; i++) {
-						
-						fprintf (buses, "%d\n", vec[i]);
-					}
+					imprime (vec);
 					
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
-					
-					fclose (buses);
 				
 				break;
 				
@@ -490,31 +458,138 @@ int main () {
 					
 					vec[op-1] = (vec[op-1] - contador);
 					
+					imprime (vec);
+					
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+						
+				break;
+				
+				case 7:
+					
+					printf ("Madrid-Bilbao\n");
+					
+					buses = fopen ("buses.txt", "r");
+					
+					i = 0;
+					
+					fin = fscanf (buses, "%d", &disponibles);
+					
+					while (fin != EOF) {
+						
+						vec[i] = disponibles; 
+						i++; 			
+						fin = fscanf (buses, "%d", &disponibles);
+					}
+					fclose (buses);
+					
+					printf ("Hay %d plazas disponibles\n", vec[op-1]);
+					
+					if (vec[op-1] == 0) {
+						
+						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						break;
+					}
+					
+					printf ("Selecciona numero de plazas que deseas abonar\n");
+					
+					scanf ("%d", &nplazas);
+					
+					while (nplazas > vec[op-1]) {
+						
+						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
+						scanf ("%d", &nplazas);
+					}
+					
+					precio = nplazas*31.99;
+					
+					if (nplazas <= A) {
+						
+						for (i = 0; i < nplazas; i++) {
+							
+							bus[op-1].plaza[i] = 1;
+						}
+					}
+					
+					for (i = 0; i < A; i++) {
+						
+						if (bus[op-1].plaza[i] == 1) {
+							
+							contador++;
+						}
+					}
+					
+					vec[op-1] = (vec[op-1] - contador);
+					
+					imprime (vec);
+					
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					
+				break;
+				
+				case 8:
+					
+					printf ("Madrid-A Coruna\n");
+					
+					buses = fopen ("buses.txt", "r");
+					
+					i = 0;
+					
+					fin = fscanf (buses, "%d", &disponibles);
+					
+					while (fin != EOF) {
+						
+						vec[i] = disponibles; 
+						i++; 
+						fin = fscanf (buses, "%d", &disponibles);
+					}
+					fclose (buses);
+					
+					printf ("Hay %d plazas disponibles\n", vec[op-1]);
+					
+					if (vec[op-1] == 0) {
+						
+						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						break;
+					}
+					
+					printf ("Selecciona numero de plazas que deseas abonar\n");
+					
+					scanf ("%d", &nplazas);
+					
+					while (nplazas > vec[op-1]) {
+						
+						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
+						scanf ("%d", &nplazas);
+					}
+					
+					precio = nplazas*29.99;
+					
+					if (nplazas <= A) {
+						
+						for (i = 0; i < nplazas; i++) {
+							
+							bus[op-1].plaza[i] = 1;
+						}
+					}
+					
+					for (i = 0; i < A; i++) {
+						
+						if (bus[op-1].plaza[i] == 1) {
+							
+							contador++;
+						}
+					}
+					vec[op-1] = (vec[op-1] - contador);
+					
 					buses = fopen ("buses.txt", "w");
 					
 					for (i = 0; i < B; i++) {
 						
 						fprintf (buses, "%d\n", vec[i]);
 					}
-					
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
 					
 					fclose (buses);
-						
-				break;
-				
-				case 7:
-					
-					
-				break;
-				
-				case 8:
-					
-					
-				break;
-				
-				case 9:
-					
 					
 				break;
 				
@@ -523,8 +598,6 @@ int main () {
 					printf ("ERROR. El numero introducido no coincide con ningun autobus\n");
 					
 				break;
-				
-				
 			}
 			
 			
@@ -590,13 +663,6 @@ int main () {
 			
 			/*EL CLIENTE PODRA ELEGIR LOS COMPLEMENTOS QUE DESEE SEGUN LA OPCION ESCOGIDA*/
 			
-			
-			
-			break;
-			
-		case 'A':
-			
-			//FICHERO EN EL CUAL APARECERAN EL NUMERO DE PLAZAS DISPONIBLES
 			
 			
 			break;
@@ -692,6 +758,20 @@ int CompruebaRobot (int numero, int b) {
 	    return 0;
 }
 
-
+void imprime (int v[B]) {
+	
+	FILE *buses;
+	
+	int i;
+	
+	buses = fopen ("buses.txt", "w");
+	
+	for (i = 0; i < B; i++) {
+		
+		fprintf (buses, "%d\n", v[i]);
+	}
+	
+	fclose (buses);
+}
 
 

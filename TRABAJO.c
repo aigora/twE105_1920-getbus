@@ -166,7 +166,7 @@ int main () {
 				
 				    while (fin != EOF) {
 					
-				       vec[i] = disponibles; //GUARDO EL Nº DE PLAZAS LIBRES DE CADA BUS EN UN VECTOR
+				       vec[i] = disponibles; 
 				       i++; 
 				       fin = fscanf (buses, "%d", &disponibles);	
 				    }
@@ -191,7 +191,7 @@ int main () {
 				       scanf ("%d", &nplazas);
 					}
 					
-					precio = nplazas*34; //CANTIDAD A PAGAR POR EL USUARIO 
+					precio = nplazas*34; 
 					
 					if (nplazas <= A) {
 						
@@ -209,7 +209,7 @@ int main () {
 						}
 					}
 					
-					vec[op-1] = (vec[op-1] - contador); //MODIFICO EL NUMERO DE PLAZAS LIBRES
+					vec[op-1] = (vec[op-1] - contador); 
 					
 					buses = fopen ("buses.txt", "w");
 					
@@ -236,7 +236,7 @@ int main () {
 					
 					while (fin != EOF) {
 						
-						vec[i] = disponibles; //GUARDO EL Nº DE PLAZAS LIBRES DE CADA BUS EN UN VECTOR
+						vec[i] = disponibles; 
 						i++; 
 						fin = fscanf (buses, "%d", &disponibles);
 					}
@@ -261,7 +261,7 @@ int main () {
 					   scanf ("%d", &nplazas);	
 					}
 					
-					precio = nplazas*34.70; //CANTIDAD A PAGAR POR EL USUARIO
+					precio = nplazas*34.70; 
 					
 					if (nplazas <= A) {
 						
@@ -296,6 +296,70 @@ int main () {
 				
 				case 4:
 					
+				    printf ("Madrid-Valencia\n");
+				    
+					buses = fopen ("buses.txt", "r");
+					
+					i = 0;
+					
+					fin = fscanf (buses, "%d", &disponibles);
+					
+					while (fin != EOF) {
+						
+						vec[i] = disponibles; //GUARDO EL Nº DE PLAZAS LIBRES DE CADA BUS EN UN VECTOR
+						i++; 
+						fin = fscanf (buses, "%d", &disponibles);
+					}
+					
+					fclose (buses);
+					
+					printf ("Hay %d plazas disponibles\n", vec[op-1]);
+					
+					if (vec[op-1] == 0) {
+						
+						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						break;
+					}
+					
+					printf ("Selecciona numero de plazas que deseas abonar\n");
+					
+					scanf ("%d", &nplazas);
+					
+					while (nplazas > vec[op-1]) {
+						
+						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
+						scanf ("%d", &nplazas);
+					}
+					
+					precio = nplazas*28.50;
+					
+					if (nplazas <= A) {
+						
+						for (i = 0; i < nplazas; i++) {
+							
+							bus[op-1].plaza[i] = 1;
+						}
+					}
+					for (i = 0; i < A; i++) {
+						
+						if (bus[op-1].plaza[i] == 1) {
+							
+							contador++;
+						}
+					}
+					
+					vec[op-1] = (vec[op-1] - contador);
+					
+					buses = fopen ("buses.txt", "w");
+					
+					for (i = 0; i < B; i++) {
+						
+						fprintf (buses, "%d\n", vec[i]);
+					}
+					
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					
+					fclose (buses);
 					
 				break;
 				

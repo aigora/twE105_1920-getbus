@@ -295,9 +295,9 @@ int main () {
 				break;
 				
 				case 4:
+			
+					printf ("Madrid-Valencia\n");
 					
-				    printf ("Madrid-Valencia\n");
-				    
 					buses = fopen ("buses.txt", "r");
 					
 					i = 0;
@@ -428,13 +428,79 @@ int main () {
 						fprintf (buses, "%d\n", vec[i]);
 					}
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);fclose (buses);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					
+					fclose (buses);
 				
 				break;
 				
 				case 6:
 					
+					printf ("Madrid-Zaragoza\n");
 					
+					buses = fopen ("buses.txt", "r");
+					
+					i = 0;
+					
+					fin = fscanf (buses, "%d", &disponibles);
+					
+					while (fin != EOF) {
+						
+						vec[i] = disponibles; 
+						i++; 
+						fin = fscanf (buses, "%d", &disponibles);
+					}
+					fclose (buses);
+					
+					printf ("Hay %d plazas disponibles\n", vec[op-1]);
+					
+					if (vec[op-1] == 0) {
+						
+						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						break;
+					}
+					
+					printf ("Selecciona numero de plazas que deseas abonar\n");
+					
+					scanf ("%d", &nplazas);
+					
+					while (nplazas > vec[op-1]) {
+						
+						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
+						scanf ("%d", &nplazas);
+					}
+					
+					precio = nplazas*24.20;
+					
+					if (nplazas <= A) {
+						
+						for (i = 0; i < nplazas; i++) {
+							
+						   bus[op-1].plaza[i] = 1;
+						}
+					}
+					
+					for (i = 0; i < A; i++) {
+						
+						if (bus[op-1].plaza[i] == 1) {
+							
+							contador++;
+						}
+					}
+					
+					vec[op-1] = (vec[op-1] - contador);
+					
+					buses = fopen ("buses.txt", "w");
+					
+					for (i = 0; i < B; i++) {
+						
+						fprintf (buses, "%d\n", vec[i]);
+					}
+					
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					
+					fclose (buses);
+						
 				break;
 				
 				case 7:

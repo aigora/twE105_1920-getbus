@@ -4,8 +4,14 @@
 #define N 11
 #define M 101
 #define DIM 16
+#define A 50 //NUMERO DE PLAZAS DE CADA BUS
+#define B 9 //NUMERO DE BUSES
 
 //DEFINICION DE FUNCIONES Y DE ESTRUCTURAS
+
+typedef struct {
+	int plaza[A];
+} autobuses;
 
 struct {
     char nombre[100];
@@ -22,9 +28,13 @@ int main () {
 	
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
-	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1;
+	FILE *buses;
+	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1, op, nplazas, fin, disponibles, vec[B];
+	float precio = 0;
 	unsigned long long int numtarjeta;
 	char opcion, car;
+	
+	autobuses bus[B] = {0, 0, 0, 0, 0, 0, 0, 0, 0}; //VECTOR DE ESTRUCTURAS INICIALIZADO PARA EVITAR ERRORES
 	
 	do {
 	
@@ -69,6 +79,166 @@ int main () {
 			
 		case 'C':
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
+			
+			printf ("Selecciona donde quieres ir\n");
+			
+			scanf ("%d", &op);
+			
+			switch (op) {
+				
+				case 1:
+					
+					printf ("Madrid-Sevilla\n");
+					
+					buses = fopen ("buses.txt", "r");
+					i = 0;
+					fin = fscanf (buses, "%d", &disponibles);
+					
+					while (fin != EOF) {
+					
+					   vec[i] = disponibles; //GUARDO EL Nº DE PLAZAS LIBRES DE CADA BUS EN UN VECTOR
+					   i++;
+					   fin = fscanf (buses, "%d", &disponibles);
+					}
+					
+					fclose (buses);
+					
+					printf ("Hay %d plazas disponibles\n", vec[op-1]);
+					
+					if (vec[op-1] == 0) {
+						
+						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						break;	
+					}
+					
+					printf ("Selecciona numero de plazas que deseas abonar\n");
+					
+					scanf ("%d", &nplazas);
+					
+					while (nplazas > vec[op-1]) {
+						
+						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
+						scanf ("%d", &nplazas);	
+					}
+					
+					precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO 
+					
+					if (nplazas <= A) {
+					
+					   for (i = 0; i < nplazas; i++) {
+					   	
+					   	 bus[op-1].plaza[i] = 1;
+					   }	
+					}
+					
+					for (i = 0; i < A; i++) { //CUENTA EL NUMERO DE PLAZAS QUE SE HAN AÑADIDO
+						
+						if (bus[op-1].plaza[i] == 1) {
+							
+							contador++;
+						}
+					}
+					
+					vec[op-1] = (vec[op-1] - contador); //MODIFICO EL NUMERO DE PLAZAS LIBRES
+					
+					buses = fopen ("buses.txt", "w");
+					
+					for (i = 0; i < B; i++) {
+						
+						fprintf (buses, "%d\n", vec[i]);
+					}
+					
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					
+					fclose (buses);
+					
+				break;
+				
+				case 2:
+					
+					
+					
+				break;
+				
+				case 3:
+					
+					
+				break;
+				
+				case 4:
+					
+					
+				break;
+				
+				case 5:
+					
+					
+				break;
+				
+				case 6:
+					
+					
+				break;
+				
+				case 7:
+					
+					
+				break;
+				
+				case 8:
+					
+					
+				break;
+				
+				case 9:
+					
+					
+				break;
+				
+				default:
+					
+					printf ("ERROR. El numero introducido no coincide con ningun autobus\n");
+					
+				break;
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			printf ("Introduce tu numero de tarjeta:\n");
 			

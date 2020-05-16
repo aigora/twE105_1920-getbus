@@ -38,8 +38,10 @@ int main () {
 	
 	autobuses bus[B] = {0, 0, 0, 0, 0, 0, 0, 0}; //VECTOR DE ESTRUCTURAS INICIALIZADO PARA EVITAR ERRORES
 	
-	do {
 	
+	
+	do {
+	system("cls");
 	for (i = 0; i < N; i++) {
 		for (j = 0; j < M; j++) {
 			if (i == 0 || i == N - 1)
@@ -66,7 +68,10 @@ int main () {
 	switch (opcion) {
 		
 		case 'M':
+		case 'm':
 			//LEE FICHERO CON LOS DESTINOS INCLUIDOS PRECIOS
+			system("cls");
+			
 			printf ("Autobuses con salida desde Madrid. Todos los precios en euros (ida y vuelta):\n\n");
 			dest = fopen ("destinos.txt", "r");
 			do {
@@ -76,11 +81,13 @@ int main () {
 			while (contador != EOF);
 	
 			fclose (dest);
-			
+			system("PAUSE");
 			break;
 			
 		case 'C':
+		case 'c':
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
+			system("cls");
 			
 			printf ("Selecciona donde quieres ir\n");
 			
@@ -630,6 +637,7 @@ int main () {
 			break;
 			
 		case 'R':
+		case 'r':
 			
 			//FUNCION REGISTRO DE USUARIO USO DE ESTRUCTURAS (FUNCION COMPRUEBA ROBOT FUNCION SRAND)
 			naleatorio = NumAleatorio(1);
@@ -651,6 +659,7 @@ int main () {
 			break;
 			
 		case 'D':
+		case 'd':
 			
 			/*FICHERO CON LOS DESCUENTOS DISPONIBLES*/
 			
@@ -660,6 +669,7 @@ int main () {
 		    break;
 		    
 		case 'S':
+		case 's':
 			
 			/*EL CLIENTE PODRA ELEGIR LOS COMPLEMENTOS QUE DESEE SEGUN LA OPCION ESCOGIDA*/
 			

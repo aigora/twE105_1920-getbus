@@ -651,12 +651,14 @@ int main () {
 			
 		case 'R':
 		case 'r':
-			
+			system("cls");
 			//FUNCION REGISTRO DE USUARIO USO DE ESTRUCTURAS (FUNCION COMPRUEBA ROBOT FUNCION SRAND)
 			naleatorio = NumAleatorio(1);
 			printf ("Verificacion de codigo: %d\n", naleatorio);
 			scanf ("%d", &codigo);
 			getchar();
+			
+			system("cls");
 			
 			while (CompruebaRobot (codigo, naleatorio) != 1) {
 				
@@ -665,7 +667,7 @@ int main () {
 			   getchar();
 			}
 			
-			printf ("Introduce tu nombre y apellidos\n");
+			
 			//LLAMADA A LA FUNCION si y solo si no eres un robot
 			registro (opcion);
 			    
@@ -712,7 +714,8 @@ void registro (char op) {
 	
 	registro = fopen ("registro.txt", "r");
 	
-	gets (nom); 
+	printf ("Introduce tu nombre y apellidos\n");
+		gets (nom); 
 	
 	while (fgets (cliente.nombre, n, registro) != NULL) {
 		
@@ -726,22 +729,28 @@ void registro (char op) {
 	
 	if (encontrado == 1) {
 	
-	   printf ("Tu nombre y numero de telefono estan registrados\n\n");
+	   printf ("Tu nombre y numero de telefono ya estan registrados\n\n");
+	   system("pause");
 	}
 	
 	else {
     	
-    	registro = fopen ("registro.txt", "a");
-    	
-    	printf ("Tu nombre no figura en el registro. Registrate ahora:\n");
-    	
-    	gets (cliente.nombre);
+    registro = fopen ("registro.txt", "a");
+    	system("cls");
+    
+    	printf ("Tu nombre no figura en el registro.\nRegistrate ahora %s:\n", nom);
+    
+    	strncpy(cliente.nombre,nom, 100);
+    	  	
+    	system("pause");
+    	system("cls");
     	
     	printf ("Introduce un telefono de contacto\n");
 		
 		scanf ("%s", cliente.telefono);
 		
 		longitud = strlen (cliente.telefono);
+		
 		
 		while (longitud != 9) {
 			
@@ -758,6 +767,10 @@ void registro (char op) {
     	fprintf (registro, "\n");
     	
     	fclose (registro);
+    	
+    	system("cls");
+    	printf("Gracias por registrarse en GETBUS. Utilizando el codigo 'BIENVENIDA' obtendra un 10 por ciento de descuento\n");
+    	system("pause");
 	}
 }
 

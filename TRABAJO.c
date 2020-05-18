@@ -677,8 +677,6 @@ int main () {
 			/*LEE FICHERO CON LOS DESCUENTOS DISPONIBLES*/
 			leerfichero("descuentos.txt");
 			
-			
-			
 		    break;
 		    
 		case 'S':
@@ -686,14 +684,13 @@ int main () {
 			system("cls");
 			/*EL CLIENTE PODRA ELEGIR LOS COMPLEMENTOS QUE DESEE SEGUN LA OPCION ESCOGIDA*/
 			leerfichero("comida.txt");
-			
-			
+					
 			break;
 			
 		default:
 			
 			printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n\n");
-		   
+		   system("pause");
 	       break;
 	}
 
@@ -812,9 +809,34 @@ void leerfichero(char nombreFich[]){
 	
 			fclose (lee);
 			
-			system("PAUSE");
-
+		system("PAUSE");
 }
+
+
+
+
+/*void leerfichero(char nombreFich[]){
+	FILE *lee;
+	char texto[10];
+	int num[10], i=0;
+	
+	
+	lee = fopen (nombreFich, "r");
+	
+	if(lee == NULL){
+		printf("El fichero no se ha abierto correctamente...\n");
+	}
+	else{	
+			while(fscanf(lee," %s %d", &texto[i], &num[i] ) != EOF){
+				printf("%s - %d\n", &texto[i], &num[i] );
+				i++;
+				
+			}
+		}
+	fclose(lee);
+			
+	system("PAUSE");
+}*/
 
 
 

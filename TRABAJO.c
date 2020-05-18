@@ -89,6 +89,16 @@ int main () {
 			//FUNCION PARA COMPRA DE BILLETES SOLO PAGO CON TARJETA
 			system("cls");
 			
+			printf ("Autobuses con salida desde Madrid. Todos los precios en euros (ida y vuelta):\n\n");
+			dest = fopen ("destinos.txt", "r");
+			do {
+			  contador = fscanf(dest, "%c", &car);
+			  printf("%c", car);
+			}
+			while (contador != EOF);
+	
+			fclose (dest);
+			
 			printf ("Selecciona donde quieres ir\n");
 			
 			scanf ("%d", &op);

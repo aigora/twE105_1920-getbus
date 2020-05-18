@@ -18,7 +18,8 @@ struct {
     char telefono[15];
 } cliente;
 
-void registro (char op); 
+void registro (char op);
+void leerfichero(char nombreFich[]); 
 
 int CompruebaRobot (int numero, int b);
 
@@ -31,10 +32,12 @@ int main () {
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
 	FILE *buses;
+	
 	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1, op, nplazas, fin, disponibles, vec[B];
 	float precio = 0;
 	unsigned long long int numtarjeta;
-	char opcion, car;
+	char opcion, car, nombreFich[N];
+	
 	
 	autobuses bus[B] = {0, 0, 0, 0, 0, 0, 0, 0}; //VECTOR DE ESTRUCTURAS INICIALIZADO PARA EVITAR ERRORES
 	
@@ -670,9 +673,9 @@ int main () {
 			
 		case 'D':
 		case 'd':
-			
-			/*FICHERO CON LOS DESCUENTOS DISPONIBLES*/
-			
+			system("cls");
+			/*LEE FICHERO CON LOS DESCUENTOS DISPONIBLES*/
+			leerfichero("descuentos.txt");
 			
 			
 			
@@ -680,9 +683,9 @@ int main () {
 		    
 		case 'S':
 		case 's':
-			
+			system("cls");
 			/*EL CLIENTE PODRA ELEGIR LOS COMPLEMENTOS QUE DESEE SEGUN LA OPCION ESCOGIDA*/
-			
+			leerfichero("comida.txt");
 			
 			
 			break;
@@ -793,5 +796,25 @@ void imprime (int v[B]) {
 	
 	fclose (buses);
 }
+
+
+
+void leerfichero(char nombreFich[]){
+	FILE *lee;
+	char texto;
+	int contador=0;
+	lee = fopen (nombreFich, "r");
+			do {
+			  contador = fscanf(lee, "%c", &texto);
+			  printf("%c", texto);
+			}
+			while (contador != EOF);
+	
+			fclose (lee);
+			
+			system("PAUSE");
+
+}
+
 
 

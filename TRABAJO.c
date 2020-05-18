@@ -802,11 +802,11 @@ void imprime (int v[B]) {
 void leerfichero(char nombreFich[]){
 	FILE *lee;
 	char texto;
-	int num, contador=0;
+	int contador=0;
 	lee = fopen (nombreFich, "r");
 			do {
-			  contador = fscanf(lee, "%c %i", &texto, &num);
-			  printf("%c %i", texto, num);
+			  contador = fscanf(lee, "%c", &texto);
+			  printf("%c", texto);
 			}
 			while (contador != EOF);
 	

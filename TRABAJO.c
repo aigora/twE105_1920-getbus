@@ -809,7 +809,7 @@ void imprime (int v[B]) {
 
 
 
-void leerfichero(char nombreFich[]){
+/*void leerfichero(char nombreFich[]){
 	FILE *lee;
 	char texto;
 	int contador=0;
@@ -823,14 +823,14 @@ void leerfichero(char nombreFich[]){
 			fclose (lee);
 			
 		system("PAUSE");
-}
+}*/
 
 
 
 
-/*void leerfichero(char nombreFich[]){
+void leerfichero(char nombreFich[]){
 	FILE *lee;
-	char texto[10];
+	char texto[10][100];
 	int num[10], i=0;
 	
 	
@@ -840,16 +840,16 @@ void leerfichero(char nombreFich[]){
 		printf("El fichero no se ha abierto correctamente...\n");
 	}
 	else{	
-			while(fscanf(lee," %s %d", &texto[i], &num[i] ) != EOF){
-				printf("%s - %d\n", &texto[i], &num[i] );
-				i++;
+			while(fscanf(lee," %s %d", texto[i], &num[i] ) != EOF){
+                printf("%s - %d\n", texto[i], num[i] );
+                i++;
 				
 			}
 		}
 	fclose(lee);
 			
 	system("PAUSE");
-}*/
+}
 
 
 

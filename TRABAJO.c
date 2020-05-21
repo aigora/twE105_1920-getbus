@@ -19,6 +19,7 @@ struct {
 } cliente;
 
 void registro (char op);
+
 void leerfichero(char nombreFich[]); 
 
 int CompruebaRobot (int numero, int b);
@@ -620,31 +621,25 @@ int main () {
 				break;
 			}
 			
-			
-			//MODIFICAR 
-			
 			printf ("Introduce tu numero de tarjeta:\n");
 			
 			scanf ("%llu", &numtarjeta);
 			
 			i = 0;
 			
-			while (numtarjeta > 0) { 
+			while (numtarjeta > 0) {
 			
-			v[i] = numtarjeta % 10;
-			numtarjeta = numtarjeta / 10;
-			i++;
+			  v[i] = numtarjeta % 10;
+			  numtarjeta = numtarjeta / 10;
+			  i++;
 			}
-			
 			printf ("Tu numero de tarjeta es:\n");
 			
 			for (i = 0; i < DIM; i++) {
-			    	
 			  tarjeta[i] = v[n];
 			  printf ("%d ", tarjeta[i]);
 			  n--;
 			}
-		
 			printf ("\n\n");
 		
 			break;
@@ -735,21 +730,21 @@ void registro (char op) {
 	}
 	
 	else {
-    	
-    registro = fopen ("registro.txt", "a");
-    
-    system("cls");
-    
-    printf ("Tu nombre no figura en el registro.\nRegistrate ahora %s:\n", nom);
-    
-    strncpy(cliente.nombre,nom, 100);
-    	  	
-    system("pause");
-    
-    system("cls");
-    	
-    printf ("Introduce un telefono de contacto\n");
-		
+	
+	registro = fopen ("registro.txt", "a");
+	
+	system("cls");
+	
+	printf ("Tu nombre no figura en el registro.\nRegistrate ahora %s:\n", nom);
+	
+	strncpy(cliente.nombre,nom, 100);
+	
+	system("pause");
+	
+	system("cls");
+	
+	printf ("Introduce un telefono de contacto\n");
+	
 	scanf ("%s", cliente.telefono);
 		
 	longitud = strlen (cliente.telefono);
@@ -764,17 +759,17 @@ void registro (char op) {
 	fputs (cliente.nombre, registro);
 		
 	fprintf (registro, " ");
-		
-    fprintf (registro, "%s", cliente.telefono);
-    	
-   	fprintf (registro, "\n");
-    	
-    fclose (registro);
-    	
-    system("cls");
-    
-    printf("Gracias por registrarse en GETBUS. Utilizando el codigo 'BIENVENIDA' obtendra un 10 por ciento de descuento\n");
-    
+	
+	fprintf (registro, "%s", cliente.telefono);
+	
+	fprintf (registro, "\n");
+	
+	fclose (registro);
+	
+	system("cls");
+	
+	printf("Gracias por registrarse en GETBUS. Utilizando el codigo 'BIENVENIDA' obtendra un 10 por ciento de descuento\n");
+	
 	system("pause");
 	
 	}

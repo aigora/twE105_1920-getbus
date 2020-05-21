@@ -41,7 +41,7 @@ int main () {
 	FILE *dest;
 	FILE *buses;
 	
-	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1, op, nplazas, fin, disponibles, vec[B];
+	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1, op, nplazas, fin, disponibles, vec[B], notarjeta = 0;
 	float precio = 0;
 	unsigned long long int numtarjeta;
 	char opcion, car, nombreFich[N];
@@ -99,6 +99,7 @@ int main () {
 	
 			fclose (dest);
 			system("PAUSE");
+			
 			break;
 			
 		case 'C':
@@ -127,6 +128,8 @@ int main () {
 					
 					printf ("Madrid-Sevilla\n");
 					
+					notarjeta = 0;
+					
 					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
@@ -136,6 +139,8 @@ int main () {
 					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
@@ -165,21 +170,28 @@ int main () {
 					
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
 					
+					system("Pause");
+					getchar();
+					
 				break;
 				
 				case 2:
 				
 				    printf ("Madrid-Malaga\n");
-				
-				    guardaplaza(vec);
-				
-				    printf ("Hay %d plazas disponibles\n", vec[op-1]);
-				
-				    i = CompruebaBus (vec, op);
+				    
+				    notarjeta = 0;
+					
+					guardaplaza(vec);
+					
+					printf ("Hay %d plazas disponibles\n", vec[op-1]);
+					
+					i = CompruebaBus (vec, op);
 					
 					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
@@ -215,25 +227,25 @@ int main () {
 					
 					printf ("Madrid-Murcia\n");
 					
+					notarjeta = 0;
+					
 					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					if (vec[op-1] == 0) {
+					i = CompruebaBus (vec, op);
+					
+					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					scanf ("%d", &nplazas);
-					
-					while (nplazas > vec[op-1]) {
-					
-					   printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-					   scanf ("%d", &nplazas);	
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*34.70; 
 						
@@ -263,25 +275,25 @@ int main () {
 			
 					printf ("Madrid-Valencia\n");
 					
+					notarjeta = 0;
+					
 					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					if (vec[op-1] == 0) {
+					i = CompruebaBus (vec, op);
+					
+					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					scanf ("%d", &nplazas);
-					
-					while (nplazas > vec[op-1]) {
-						
-						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-						scanf ("%d", &nplazas);
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*28.50;
 						
@@ -311,25 +323,25 @@ int main () {
 					
 					printf ("Madrid-Barcelona\n");
 					
+					notarjeta = 0;
+					
 					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					if (vec[op-1] == 0) {
+					i = CompruebaBus (vec, op);
+					
+					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					scanf ("%d", &nplazas);
-					
-					while (nplazas > vec[op-1]) {
-						
-						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-						scanf ("%d", &nplazas);
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*35.50;
 						
@@ -359,25 +371,25 @@ int main () {
 					
 					printf ("Madrid-Zaragoza\n");
 					
+					notarjeta = 0;
+					
 					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					if (vec[op-1] == 0) {
+					i = CompruebaBus (vec, op);
+					
+					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					scanf ("%d", &nplazas);
-					
-					while (nplazas > vec[op-1]) {
-						
-						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-						scanf ("%d", &nplazas);
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*24.20;
 						
@@ -407,25 +419,25 @@ int main () {
 					
 					printf ("Madrid-Bilbao\n");
 					
+					notarjeta = 0;
+										
 					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					if (vec[op-1] == 0) {
+					i = CompruebaBus (vec, op);
+					
+					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					scanf ("%d", &nplazas);
-					
-					while (nplazas > vec[op-1]) {
-						
-						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-						scanf ("%d", &nplazas);
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*31.99;
 		
@@ -455,25 +467,23 @@ int main () {
 					
 					printf ("Madrid-A Coruna\n");
 					
+					notarjeta = 0;
+					
 					guardaplaza(vec);
 					
-					printf ("Hay %d plazas disponibles\n", vec[op-1]);
+					i = CompruebaBus (vec, op);
 					
-					if (vec[op-1] == 0) {
+					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						notarjeta = 1;
+						system ("Pause");
 						break;
 					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					scanf ("%d", &nplazas);
-					
-					while (nplazas > vec[op-1]) {
-						
-						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-						scanf ("%d", &nplazas);
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*29.99;
 						
@@ -492,12 +502,8 @@ int main () {
 					}
 					vec[op-1] = (vec[op-1] - contador);
 					
-					buses = fopen ("buses.txt", "w");
+					imprime (vec);
 					
-					for (i = 0; i < B; i++) {
-						
-						fprintf (buses, "%d\n", vec[i]);
-					}
 					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
 					
 					fclose (buses);
@@ -507,12 +513,11 @@ int main () {
 				default:
 					
 					printf ("ERROR. El numero introducido no coincide con ningun autobus\n");
-					system ("Pause");
-				
+				    system ("Pause");
 				break;
 			}
 			
-			if (op >= 1 && op <= 8) {
+			if ((notarjeta == 0) && (op >= 1 && op <= 8)) {
 			
 			printf ("Introduce tu numero de tarjeta:\n");
 			
@@ -583,7 +588,7 @@ int main () {
 			
 		default:
 			
-			printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n\n");
+		   printf ("ERROR. LA OPCION INTRODUCIDA NO ES VALIDA\n\n");
 		   system("pause");
 	       break;
 	}

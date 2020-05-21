@@ -715,7 +715,8 @@ void registro (char op) {
 	registro = fopen ("registro.txt", "r");
 	
 	printf ("Introduce tu nombre y apellidos\n");
-		gets (nom); 
+	
+	gets (nom); 
 	
 	while (fgets (cliente.nombre, n, registro) != NULL) {
 		
@@ -736,41 +737,46 @@ void registro (char op) {
 	else {
     	
     registro = fopen ("registro.txt", "a");
-    	system("cls");
     
-    	printf ("Tu nombre no figura en el registro.\nRegistrate ahora %s:\n", nom);
+    system("cls");
     
-    	strncpy(cliente.nombre,nom, 100);
+    printf ("Tu nombre no figura en el registro.\nRegistrate ahora %s:\n", nom);
+    
+    strncpy(cliente.nombre,nom, 100);
     	  	
-    	system("pause");
-    	system("cls");
+    system("pause");
+    
+    system("cls");
     	
-    	printf ("Introduce un telefono de contacto\n");
+    printf ("Introduce un telefono de contacto\n");
 		
-		scanf ("%s", cliente.telefono);
+	scanf ("%s", cliente.telefono);
 		
-		longitud = strlen (cliente.telefono);
-		
-		
-		while (longitud != 9) {
+	longitud = strlen (cliente.telefono);
 			
-		printf ("ERROR. Tu numero no tiene 9 cifras\n");
+	while (longitud != 9) {
+			
+	    printf ("ERROR. Tu numero no tiene 9 cifras\n");
 		scanf ("%s", cliente.telefono);
 		longitud = strlen (cliente.telefono);
-		}
-		fputs (cliente.nombre, registro);
+	}
 		
-		fprintf (registro, " ");
+	fputs (cliente.nombre, registro);
 		
-        fprintf (registro, "%s", cliente.telefono);
+	fprintf (registro, " ");
+		
+    fprintf (registro, "%s", cliente.telefono);
     	
-    	fprintf (registro, "\n");
+   	fprintf (registro, "\n");
     	
-    	fclose (registro);
+    fclose (registro);
     	
-    	system("cls");
-    	printf("Gracias por registrarse en GETBUS. Utilizando el codigo 'BIENVENIDA' obtendra un 10 por ciento de descuento\n");
-    	system("pause");
+    system("cls");
+    
+    printf("Gracias por registrarse en GETBUS. Utilizando el codigo 'BIENVENIDA' obtendra un 10 por ciento de descuento\n");
+    
+	system("pause");
+	
 	}
 }
 

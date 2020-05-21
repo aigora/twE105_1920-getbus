@@ -11,6 +11,7 @@
 
 typedef struct {
 	int plaza[A];
+	float precio;
 } autobuses;
 
 struct {
@@ -21,6 +22,10 @@ struct {
 void registro (char op);
 
 void guardaplaza (int v[B]);
+
+int CompruebaBus (int v[B], int opcion);
+
+int CompruebaPlaza (int v[B], int opcion);
 
 void leerfichero(char nombreFich[]); 
 
@@ -126,21 +131,17 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					if (vec[op-1] == 0) {
+					i = CompruebaBus (vec, op);
+					
+					if (i == 1) {
 						
 						printf ("Lo sentimos, el autobus se encuentra lleno\n");
-						break;	
+						break;
 					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					scanf ("%d", &nplazas);
-					
-					while (nplazas > vec[op-1]) { //AÑADIR MAS FUNCIONES 
-						
-						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-						scanf ("%d", &nplazas);
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO 
 					
@@ -174,21 +175,17 @@ int main () {
 				
 				    printf ("Hay %d plazas disponibles\n", vec[op-1]);
 				
-				    if (vec[op-1] == 0) {
+				    i = CompruebaBus (vec, op);
 					
-					   printf ("Lo sentimos, el autobus se encuentra lleno\n");
-					   break;
-				    }
+					if (i == 1) {
+						
+						printf ("Lo sentimos, el autobus se encuentra lleno\n");
+						break;
+					}
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
-				
-					scanf ("%d", &nplazas);
-				
-					while (nplazas > vec[op-1]) {
 					
-					   printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
-				       scanf ("%d", &nplazas);
-					}
+					nplazas = CompruebaPlaza(vec, op);
 					
 					precio = nplazas*34; 
 						
@@ -730,23 +727,23 @@ void imprime (int v[B]) {
 
 
 void leerfichero(char nombreFich[]){
+	
 	FILE *lee;
 	char texto[10][100];
 	int num[10], i=0;
-	
-	
+
 	lee = fopen (nombreFich, "r");
 	
 	if(lee == NULL){
 		printf("El fichero no se ha abierto correctamente...\n");
 	}
-	else{	
-			while(fscanf(lee," %s %d", texto[i], &num[i] ) != EOF){
-                printf("%s - %d\n", texto[i], num[i] );
-                i++;
-				
-			}
+	else{
+	
+	   while(fscanf(lee," %s %d", texto[i], &num[i]) != EOF){
+	        printf("%s - %d\n", texto[i], num[i]);
+			i++;
 		}
+    }
 	fclose(lee);
 			
 	system("PAUSE");
@@ -771,4 +768,28 @@ void guardaplaza (int v[B]) { //ABRE EL FICHERO DE PLAZAS DE CADA BUS Y LO GUARD
 	fclose (buses);
 }
 
+int CompruebaPlaza (int v[B], int opcion) {
+	
+	int nplazas;
+	
+	scanf ("%d", &nplazas);
+
+    while (nplazas > v[opcion-1]) {
+
+       printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
+       scanf ("%d", &nplazas);
+   }
+   return nplazas;	
+}
+
+int CompruebaBus (int v[B], int opcion) {
+	
+	int lleno = 0;
+
+    if (v[opcion-1] == 0) {
+    	
+	   lleno = 1;
+	}
+	return lleno;
+}
 

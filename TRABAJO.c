@@ -20,6 +20,8 @@ struct {
 
 void registro (char op);
 
+void guardaplaza (int v[B]);
+
 void leerfichero(char nombreFich[]); 
 
 int CompruebaRobot (int numero, int b);
@@ -52,6 +54,12 @@ int main () {
 			    printf ("=");
 			else if (j == 0 || j == M - 1)
 			    printf ("+");
+			else if (j == M - 19 && i == 5) {
+				printf ("+");
+			}
+			else if (i == 5 && j == 40) {
+				printf ("BIENVENIDO A GETBUS");
+			}
 			else 
 			    printf (" ");
 		}
@@ -106,6 +114,7 @@ int main () {
 			printf ("Selecciona donde quieres ir\n");
 			
 			scanf ("%d", &op);
+			getchar();
 			
 			switch (op) {
 				
@@ -113,19 +122,7 @@ int main () {
 					
 					printf ("Madrid-Sevilla\n");
 					
-					buses = fopen ("buses.txt", "r");
-					
-					i = 0;
-					
-					fin = fscanf (buses, "%d", &disponibles);
-					
-					while (fin != EOF) {
-						
-						vec[i] = disponibles;
-						i++;
-						fin = fscanf (buses, "%d", &disponibles);
-					}
-					fclose (buses);
+					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
@@ -139,7 +136,7 @@ int main () {
 					
 					scanf ("%d", &nplazas);
 					
-					while (nplazas > vec[op-1]) {
+					while (nplazas > vec[op-1]) { //AÑADIR MAS FUNCIONES 
 						
 						printf ("Lo sentimos, el numero introducido es mayor que el numero de plazas disponibles. Intentalo de nuevo\n");
 						scanf ("%d", &nplazas);
@@ -147,18 +144,16 @@ int main () {
 					
 					precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO 
 					
-					if (nplazas <= A) {
-					
-					   for (i = 0; i < nplazas; i++) {
+					for (i = 0; i < nplazas; i++) {
 					   	
-					   	 bus[op-1].plaza[i] = 1;
-					   }	
+					   bus[op-1].plaza[i] = 1;
 					}
+					contador = 0; //VOLVEMOS A INICIALIZAR LA VARIABLE YA QUE SE USO EN OTRA OCASIONES
 					
 					for (i = 0; i < A; i++) { //CUENTA EL NUMERO DE PLAZAS QUE SE HAN AÑADIDO
 						
 						if (bus[op-1].plaza[i] == 1) {
-							
+						
 							contador++;
 						}
 					}
@@ -175,20 +170,7 @@ int main () {
 				
 				    printf ("Madrid-Malaga\n");
 				
-				    buses = fopen ("buses.txt", "r");
-				
-				    i = 0;
-				
-				    fin = fscanf (buses, "%d", &disponibles);
-				
-				    while (fin != EOF) {
-					
-				       vec[i] = disponibles; 
-				       i++; 
-				       fin = fscanf (buses, "%d", &disponibles);	
-				    }
-					
-				    fclose (buses);
+				    guardaplaza(vec);
 				
 				    printf ("Hay %d plazas disponibles\n", vec[op-1]);
 				
@@ -209,14 +191,12 @@ int main () {
 					}
 					
 					precio = nplazas*34; 
-					
-					if (nplazas <= A) {
 						
-						for (i = 0; i < nplazas; i++) {
+					for (i = 0; i < nplazas; i++) {
 							
-							bus[op-1].plaza[i] = 1;
-						}
+					    bus[op-1].plaza[i] = 1;
 					}
+					contador = 0;
 					
 					for (i = 0; i < A; i++) {
 						
@@ -238,20 +218,7 @@ int main () {
 					
 					printf ("Madrid-Murcia\n");
 					
-					buses = fopen ("buses.txt", "r");
-					
-					i = 0;
-					
-					fin = fscanf (buses, "%d", &disponibles);
-					
-					while (fin != EOF) {
-						
-						vec[i] = disponibles; 
-						i++; 
-						fin = fscanf (buses, "%d", &disponibles);
-					}
-					
-					fclose (buses);
+					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
@@ -272,14 +239,12 @@ int main () {
 					}
 					
 					precio = nplazas*34.70; 
-					
-					if (nplazas <= A) {
 						
-						for (i = 0; i < nplazas; i++) {
+					for (i = 0; i < nplazas; i++) {
 						
-						   bus[op-1].plaza[i] = 1;
-						}
+						bus[op-1].plaza[i] = 1;
 					}
+					contador = 0;
 					
 					for (i = 0; i < A; i++) {
 						
@@ -301,20 +266,7 @@ int main () {
 			
 					printf ("Madrid-Valencia\n");
 					
-					buses = fopen ("buses.txt", "r");
-					
-					i = 0;
-					
-					fin = fscanf (buses, "%d", &disponibles);
-					
-					while (fin != EOF) {
-						
-						vec[i] = disponibles; 
-						i++; 
-						fin = fscanf (buses, "%d", &disponibles);
-					}
-					
-					fclose (buses);
+					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
@@ -335,14 +287,12 @@ int main () {
 					}
 					
 					precio = nplazas*28.50;
-					
-					if (nplazas <= A) {
 						
-						for (i = 0; i < nplazas; i++) {
+					for (i = 0; i < nplazas; i++) {
 							
-							bus[op-1].plaza[i] = 1;
-						}
+						bus[op-1].plaza[i] = 1;
 					}
+					contador = 0;
 					
 					for (i = 0; i < A; i++) {
 						
@@ -364,20 +314,7 @@ int main () {
 					
 					printf ("Madrid-Barcelona\n");
 					
-					buses = fopen ("buses.txt", "r");
-					
-					i = 0;
-					
-					fin = fscanf (buses, "%d", &disponibles);
-					
-					while (fin != EOF) {
-					
-					    vec[i] = disponibles;
-					    i++;
-						fin = fscanf (buses, "%d", &disponibles);
-					}
-					
-					fclose (buses);
+					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
@@ -398,14 +335,12 @@ int main () {
 					}
 					
 					precio = nplazas*35.50;
-					
-					if (nplazas <= A) {
 						
-						for (i = 0; i < nplazas; i++) {
+					for (i = 0; i < nplazas; i++) {
 						
-						    bus[op-1].plaza[i] = 1;
-						}
+						bus[op-1].plaza[i] = 1;
 					}
+					contador = 0;
 					
 					for (i = 0; i < A; i++) {
 					
@@ -427,19 +362,7 @@ int main () {
 					
 					printf ("Madrid-Zaragoza\n");
 					
-					buses = fopen ("buses.txt", "r");
-					
-					i = 0;
-					
-					fin = fscanf (buses, "%d", &disponibles);
-					
-					while (fin != EOF) {
-						
-						vec[i] = disponibles; 
-						i++; 
-						fin = fscanf (buses, "%d", &disponibles);
-					}
-					fclose (buses);
+					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
@@ -460,14 +383,12 @@ int main () {
 					}
 					
 					precio = nplazas*24.20;
-					
-					if (nplazas <= A) {
 						
-						for (i = 0; i < nplazas; i++) {
+					for (i = 0; i < nplazas; i++) {
 							
-						   bus[op-1].plaza[i] = 1;
-						}
+						bus[op-1].plaza[i] = 1;
 					}
+					contador = 0;
 					
 					for (i = 0; i < A; i++) {
 						
@@ -489,19 +410,7 @@ int main () {
 					
 					printf ("Madrid-Bilbao\n");
 					
-					buses = fopen ("buses.txt", "r");
-					
-					i = 0;
-					
-					fin = fscanf (buses, "%d", &disponibles);
-					
-					while (fin != EOF) {
-						
-						vec[i] = disponibles; 
-						i++; 			
-						fin = fscanf (buses, "%d", &disponibles);
-					}
-					fclose (buses);
+					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
@@ -522,14 +431,12 @@ int main () {
 					}
 					
 					precio = nplazas*31.99;
-					
-					if (nplazas <= A) {
-						
-						for (i = 0; i < nplazas; i++) {
+		
+					for (i = 0; i < nplazas; i++) {
 							
-							bus[op-1].plaza[i] = 1;
-						}
+						bus[op-1].plaza[i] = 1;
 					}
+					contador = 0;
 					
 					for (i = 0; i < A; i++) {
 						
@@ -551,19 +458,7 @@ int main () {
 					
 					printf ("Madrid-A Coruna\n");
 					
-					buses = fopen ("buses.txt", "r");
-					
-					i = 0;
-					
-					fin = fscanf (buses, "%d", &disponibles);
-					
-					while (fin != EOF) {
-						
-						vec[i] = disponibles; 
-						i++; 
-						fin = fscanf (buses, "%d", &disponibles);
-					}
-					fclose (buses);
+					guardaplaza(vec);
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
@@ -584,14 +479,12 @@ int main () {
 					}
 					
 					precio = nplazas*29.99;
-					
-					if (nplazas <= A) {
 						
-						for (i = 0; i < nplazas; i++) {
-							
-							bus[op-1].plaza[i] = 1;
-						}
+					for (i = 0; i < nplazas; i++) {
+						
+						bus[op-1].plaza[i] = 1;
 					}
+					contador = 0;
 					
 					for (i = 0; i < A; i++) {
 						
@@ -617,9 +510,12 @@ int main () {
 				default:
 					
 					printf ("ERROR. El numero introducido no coincide con ningun autobus\n");
-					
+					system ("Pause");
+				
 				break;
 			}
+			
+			if (op >= 1 && op <= 8) {
 			
 			printf ("Introduce tu numero de tarjeta:\n");
 			
@@ -641,6 +537,10 @@ int main () {
 			  n--;
 			}
 			printf ("\n\n");
+			
+			system ("Pause");
+			getchar();
+			}
 		
 			break;
 			
@@ -852,5 +752,23 @@ void leerfichero(char nombreFich[]){
 	system("PAUSE");
 }
 
+void guardaplaza (int v[B]) { //ABRE EL FICHERO DE PLAZAS DE CADA BUS Y LO GUARDA EN UN VECTOR
+	
+	FILE *buses;
+	
+	int i = 0, fin, disponibles;
+	
+	buses = fopen ("buses.txt", "r");
+	
+	fin = fscanf (buses, "%d", &disponibles);
+	
+	while (fin != EOF) {
+	
+	   v[i] = disponibles;
+	   i++;
+	   fin = fscanf (buses, "%d", &disponibles);
+	}
+	fclose (buses);
+}
 
 

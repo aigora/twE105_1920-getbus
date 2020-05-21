@@ -178,8 +178,8 @@ int main () {
 				case 2:
 				
 				    printf ("Madrid-Malaga\n");
-				    
-				    notarjeta = 0;
+					
+					notarjeta = 0;
 					
 					guardaplaza(vec);
 					

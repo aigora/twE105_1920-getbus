@@ -35,21 +35,22 @@ int NumAleatorio (int a);
 
 void imprime (int v[B]);
 
+int LlenaPlazas (autobuses bus, int opcion, int nplazas);
+
+int comida (autobuses bus, int eleccion);
+
 int main () {
 	
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
 	FILE *buses;
 	
-	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1, op, nplazas, fin, disponibles, vec[B], notarjeta = 0;
+	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1, op, nplazas, fin, disponibles, vec[B], notarjeta = 0, cont;
 	float precio = 0;
 	unsigned long long int numtarjeta;
 	char opcion, car, nombreFich[N];
 	
-	
 	autobuses bus[B] = {0, 0, 0, 0, 0, 0, 0, 0}; //VECTOR DE ESTRUCTURAS INICIALIZADO PARA EVITAR ERRORES
-	
-	
 	
 	do {
 	system("cls");
@@ -148,27 +149,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO 
+					bus[op-1].precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO (SOLO TICKETS)
 					
-					for (i = 0; i < nplazas; i++) {
-					   	
-					   bus[op-1].plaza[i] = 1;
-					}
-					contador = 0; //VOLVEMOS A INICIALIZAR LA VARIABLE YA QUE SE USO EN OTRA OCASIONES
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					for (i = 0; i < A; i++) { //CUENTA EL NUMERO DE PLAZAS QUE SE HAN AÑADIDO
-						
-						if (bus[op-1].plaza[i] == 1) {
-						
-							contador++;
-						}
-					}
-					
-					vec[op-1] = (vec[op-1] - contador); //MODIFICO EL NUMERO DE PLAZAS LIBRES
+					vec[op-1] = (vec[op-1] - cont); //MODIFICO EL NUMERO DE PLAZAS LIBRES
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 					
 					system("Pause");
 					getchar();
@@ -199,27 +188,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*34; 
+					bus[op-1].precio = nplazas*34; 
 						
-					for (i = 0; i < nplazas; i++) {
-							
-					    bus[op-1].plaza[i] = 1;
-					}
-					contador = 0;
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					for (i = 0; i < A; i++) {
-						
-						if (bus[op-1].plaza[i] == 1) {
-							
-							contador++;
-						}
-					}
-					
-					vec[op-1] = (vec[op-1] - contador);
+					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
  				    
 				break;
 				
@@ -247,27 +224,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*34.70; 
+					bus[op-1].precio = nplazas*34.70; 
 						
-					for (i = 0; i < nplazas; i++) {
-						
-						bus[op-1].plaza[i] = 1;
-					}
-					contador = 0;
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					for (i = 0; i < A; i++) {
-						
-						if (bus[op-1].plaza[i] == 1) {
-						
-						    contador++;
-						}
-					}
-					
-					vec[op-1] = (vec[op-1] - contador);
+					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 					
 				break;
 				
@@ -295,27 +260,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*28.50;
+					bus[op-1].precio = nplazas*28.50;
 						
-					for (i = 0; i < nplazas; i++) {
-							
-						bus[op-1].plaza[i] = 1;
-					}
-					contador = 0;
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					for (i = 0; i < A; i++) {
-						
-						if (bus[op-1].plaza[i] == 1) {
-							
-							contador++;
-						}
-					}
-					
-					vec[op-1] = (vec[op-1] - contador);
+					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 					
 				break;
 				
@@ -343,27 +296,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*35.50;
-						
-					for (i = 0; i < nplazas; i++) {
-						
-						bus[op-1].plaza[i] = 1;
-					}
-					contador = 0;
+					bus[op-1].precio = nplazas*35.50;
 					
-					for (i = 0; i < A; i++) {
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					    if (bus[op-1].plaza[i] == 1) {
-					    	
-					    	contador++;
-						}
-					}
-					
-					vec[op-1] = (vec[op-1] - contador);
+					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 				
 				break;
 				
@@ -391,27 +332,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*24.20;
+					bus[op-1].precio = nplazas*24.20;
 						
-					for (i = 0; i < nplazas; i++) {
-							
-						bus[op-1].plaza[i] = 1;
-					}
-					contador = 0;
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					for (i = 0; i < A; i++) {
-						
-						if (bus[op-1].plaza[i] == 1) {
-							
-							contador++;
-						}
-					}
-					
-					vec[op-1] = (vec[op-1] - contador);
+					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 						
 				break;
 				
@@ -439,27 +368,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*31.99;
+					bus[op-1].precio = nplazas*31.99;
 		
-					for (i = 0; i < nplazas; i++) {
-							
-						bus[op-1].plaza[i] = 1;
-					}
-					contador = 0;
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					for (i = 0; i < A; i++) {
-						
-						if (bus[op-1].plaza[i] == 1) {
-							
-							contador++;
-						}
-					}
-					
-					vec[op-1] = (vec[op-1] - contador);
+					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 					
 				break;
 				
@@ -470,6 +387,8 @@ int main () {
 					notarjeta = 0;
 					
 					guardaplaza(vec);
+					
+					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
 					i = CompruebaBus (vec, op);
 					
@@ -485,26 +404,15 @@ int main () {
 					
 					nplazas = CompruebaPlaza(vec, op);
 					
-					precio = nplazas*29.99;
+					bus[op-1].precio = nplazas*29.99;
 						
-					for (i = 0; i < nplazas; i++) {
-						
-						bus[op-1].plaza[i] = 1;
-					}
-					contador = 0;
+					cont = LlenaPlazas (bus[op-1], op, nplazas);
 					
-					for (i = 0; i < A; i++) {
-						
-						if (bus[op-1].plaza[i] == 1) {
-							
-							contador++;
-						}
-					}
-					vec[op-1] = (vec[op-1] - contador);
+					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", precio, vec[op-1]);
+					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 					
 					fclose (buses);
 					
@@ -564,8 +472,7 @@ int main () {
 			   getchar();
 			}
 			
-			
-			//LLAMADA A LA FUNCION si y solo si no eres un robot
+			//LLAMADA A LA FUNCION REGISTRO
 			registro (opcion);
 			    
 			break;
@@ -796,5 +703,31 @@ int CompruebaBus (int v[B], int opcion) {
 	   lleno = 1;
 	}
 	return lleno;
+}
+
+int LlenaPlazas (autobuses bus, int opcion, int nplazas) {
+	
+	int i, contador = 0;
+	
+	for (i = 0; i < nplazas; i++) {
+	
+	    bus.plaza[i] = 1;
+	}
+	
+	for (i = 0; i < A; i++) { //CUENTA EL NUMERO DE PLAZAS QUE SE HAN AÑADIDO
+	
+	    if (bus.plaza[i] == 1) {
+		
+		    contador++;
+		}
+	}
+	return contador;
+}
+
+int comida (autobuses bus, int eleccion) {
+	
+	
+	
+	
 }
 

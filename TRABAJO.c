@@ -23,21 +23,21 @@ void registro (char op);
 
 void guardaplaza (int v[B]);
 
-int CompruebaBus (int v[B], int opcion);
+int compruebaBus (int v[B], int opcion);
 
-int CompruebaPlaza (int v[B], int opcion);
+int compruebaPlaza (int v[B], int opcion);
 
 void leerfichero(char nombreFich[]); 
 
-int CompruebaRobot (int numero, int b);
+int compruebaRobot (int numero, int b);
 
-int NumAleatorio (int a);
+int numAleatorio (int a);
 
 void imprime (int v[B]);
 
-int LlenaPlazas (autobuses bus, int opcion, int nplazas);
+int llenaPlazas (autobuses bus, int opcion, int nplazas);
 
-int comida (autobuses bus, int eleccion);
+int comida (autobuses bus);
 
 int main () {
 	
@@ -45,7 +45,8 @@ int main () {
 	FILE *dest;
 	FILE *buses;
 	
-	int i, j, codigo, naleatorio, contador = 0, v[DIM], tarjeta[DIM], n = DIM-1, op, nplazas, fin, disponibles, vec[B], notarjeta = 0, cont;
+	int i, j, codigo, naleatorio, contador = 0, n = DIM-1, op, nplazas, fin, disponibles, notarjeta = 0, cont;
+	int v[DIM], tarjeta[DIM], vec[B];
 	float precio = 0;
 	unsigned long long int numtarjeta;
 	char opcion, car, nombreFich[N];
@@ -135,7 +136,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -147,19 +148,22 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO (SOLO TICKETS)
 					
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont); //MODIFICO EL NUMERO DE PLAZAS LIBRES
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1])); //LLAMADA A LA FUNCION DE SERVICIO COMPLEMENTARIO
 					
 					system("Pause");
+					
 					getchar();
 					
 				break;
@@ -174,7 +178,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -186,17 +190,19 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*34; 
 						
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1]));
  				    
 				break;
 				
@@ -210,7 +216,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -222,17 +228,19 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*34.70; 
 						
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1]));
 					
 				break;
 				
@@ -246,7 +254,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -258,17 +266,19 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*28.50;
 						
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1]));
 					
 				break;
 				
@@ -282,7 +292,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -294,17 +304,19 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*35.50;
 					
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1]));
 				
 				break;
 				
@@ -318,7 +330,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -330,17 +342,19 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*24.20;
 						
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1]));
 						
 				break;
 				
@@ -354,7 +368,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -366,17 +380,19 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*31.99;
 		
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1]));
 					
 				break;
 				
@@ -390,7 +406,7 @@ int main () {
 					
 					printf ("Hay %d plazas disponibles\n", vec[op-1]);
 					
-					i = CompruebaBus (vec, op);
+					i = compruebaBus (vec, op);
 					
 					if (i == 1) {
 						
@@ -402,19 +418,19 @@ int main () {
 					
 					printf ("Selecciona numero de plazas que deseas abonar\n");
 					
-					nplazas = CompruebaPlaza(vec, op);
+					nplazas = compruebaPlaza(vec, op);
 					
 					bus[op-1].precio = nplazas*29.99;
 						
-					cont = LlenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], op, nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
 					imprime (vec);
 					
-					printf ("El total a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
+					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n", bus[op-1].precio, vec[op-1]);
 					
-					fclose (buses);
+					printf ("El total a pagar es de %.2f euros\n", bus[op-1].precio + comida (bus[op-1]));
 					
 				break;
 				
@@ -448,6 +464,8 @@ int main () {
 			}
 			printf ("\n\n");
 			
+			printf ("Gracias por confiar en GETBUS. Que tenga un buen viaje\n");
+			
 			system ("Pause");
 			getchar();
 			}
@@ -458,14 +476,14 @@ int main () {
 		case 'r':
 			system("cls");
 			//FUNCION REGISTRO DE USUARIO USO DE ESTRUCTURAS (FUNCION COMPRUEBA ROBOT FUNCION SRAND)
-			naleatorio = NumAleatorio(1);
+			naleatorio = numAleatorio(1);
 			printf ("Verificacion de codigo: %d\n", naleatorio);
 			scanf ("%d", &codigo);
 			getchar();
 			
 			system("cls");
 			
-			while (CompruebaRobot (codigo, naleatorio) != 1) {
+			while (compruebaRobot (codigo, naleatorio) != 1) {
 				
 			   printf ("Introduce de nuevo el codigo: %d\n");
 			   scanf ("%d", &codigo);
@@ -584,7 +602,7 @@ void registro (char op) {
 	}
 }
 
-int NumAleatorio (int a) {
+int numAleatorio (int a) {
 	
 	int num;
 	srand (time(0)); /*GENERADOR NUMERO ALEATORIO*/
@@ -593,7 +611,7 @@ int NumAleatorio (int a) {
 	return num;
 }
 
-int CompruebaRobot (int numero, int b) {
+int compruebaRobot (int numero, int b) {
 
 	if (numero == b) 
 		return 1;
@@ -680,7 +698,7 @@ void guardaplaza (int v[B]) { //ABRE EL FICHERO DE PLAZAS DE CADA BUS Y LO GUARD
 	fclose (buses);
 }
 
-int CompruebaPlaza (int v[B], int opcion) {
+int compruebaPlaza (int v[B], int opcion) {
 	
 	int nplazas;
 	
@@ -694,7 +712,7 @@ int CompruebaPlaza (int v[B], int opcion) {
    return nplazas;	
 }
 
-int CompruebaBus (int v[B], int opcion) {
+int compruebaBus (int v[B], int opcion) {
 	
 	int lleno = 0;
 
@@ -705,7 +723,7 @@ int CompruebaBus (int v[B], int opcion) {
 	return lleno;
 }
 
-int LlenaPlazas (autobuses bus, int opcion, int nplazas) {
+int llenaPlazas (autobuses bus, int opcion, int nplazas) {
 	
 	int i, contador = 0;
 	
@@ -724,10 +742,87 @@ int LlenaPlazas (autobuses bus, int opcion, int nplazas) {
 	return contador;
 }
 
-int comida (autobuses bus, int eleccion) {
+int comida (autobuses bus) {
 	
+	int i, eleccion, selec, num, C = 3;
+	float precioComida[C];
+	float total = 0;
 	
+	for (i = 0; i < C; i++) { //GUARDAMOS EN CADA COMPONENTE DEL VECTOR EL PRECIO DE CADA ARTICULO
+		
+		if (i == 0) {
+			
+			precioComida[i] = 3; //REFRESCO
+		}
+		
+		if (i == 1) {
+			
+			precioComida[i] = 2; //PATATAS
+		}
+		
+		if (i == 2) {
+			
+			precioComida[i] = 5;  //SANDWICH
+		}
+	}
 	
+	printf ("Si desea consumir alguno de nuestros articulos pulse 1. En caso contrario pulse 2\n\n");
 	
+	leerfichero("comida.txt");
+	
+	scanf ("%d", &eleccion);
+	getchar();
+	
+	while (eleccion != 1 && eleccion != 2) {
+		
+		printf ("Opcion incorrecta. Por favor, introduzcala de nuevo\n\n");
+		scanf ("%d", &eleccion);
+		getchar();
+	}
+	
+	if (eleccion == 1) {
+		
+		printf ("Desea tomar algun refresco? Pulse 1 en caso afirmativo\n\n");
+		scanf ("%d", &selec);
+		getchar();
+		
+		if (selec == 1) {
+			
+			printf ("Por favor, seleccione el numero de refrescos que desea encargar\n\n");
+			scanf ("%d", &num);
+			getchar();
+			total = precioComida[selec-1]*num;
+		}
+		
+		printf ("Desea tomar patatas fritas? Pulse 2 en caso afirmativo\n\n");
+		scanf ("%d", &selec);
+		getchar();
+		
+		if (selec == 2) {
+			
+			printf ("Por favor, seleccione el numero de bolsas de patatas que desea encargar\n\n");
+			scanf ("%d", &num);
+			getchar();
+			total = total + precioComida[selec-1]*num;
+		}
+		
+		printf ("Desea tomar algun sandwich? Pulse 3 en caso afirmativo\n\n");
+		scanf ("%d", &selec);
+		getchar();
+		
+		if (selec == 3) {
+			
+			printf ("Por favor, seleccione el numero de sandwichs que desea encargar\n\n");
+			scanf ("%d", &num);
+			getchar();
+			total = total + precioComida[selec-1]*num;
+		}
+	}
+	
+	if (eleccion == 2) {
+		
+		printf ("Sentimos que no desee consumir nada durante el viaje. A continuacion comienza el proceso de pago\n\n");
+	}
+	return total;
 }
 

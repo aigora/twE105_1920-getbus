@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #define N 11
 #define M 101
-#define DIM 16
 #define A 50 //NUMERO DE PLAZAS DE CADA BUS
 #define B 8 //NUMERO DE BUSES
 
@@ -46,12 +45,11 @@ int main () {
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
 	
-	int i = 0, notarjeta = 0, contador = 0, j, n = DIM-1;
+	int i = 0, notarjeta = 0, contador = 0, j;
 	int codigo, naleatorio, op, nplazas, cont;
-	int v[DIM], tarjeta[DIM], vec[B];
+	int vec[B];
 	float total;
-	unsigned long long int numtarjeta;
-	char opcion, car, nombreFich[N];
+	char opcion, car, nombreFich[N], numtarjeta[17];
 	
 	autobuses bus[B] = {0, 0, 0, 0, 0, 0, 0, 0}; //VECTOR DE ESTRUCTURAS INICIALIZADO PARA EVITAR ERRORES
 	
@@ -493,28 +491,24 @@ int main () {
 			
 			printf ("Introduce tu numero de tarjeta:\n\n");
 			
-			scanf ("%llu", &numtarjeta);
+			scanf ("%s", numtarjeta);
 			
 			fflush (stdin);
 			
-			i = 0;
-			
-			while (numtarjeta > 0) {
-			
-			  v[i] = numtarjeta % 10;
-			  numtarjeta = numtarjeta / 10;
-			  i++;
+			while (strlen (numtarjeta) != 16) {
+				
+				printf ("ERROR. El numero introducido no tiene 16 cifras. Introduzcalo de nuevo\n\n");
+				scanf ("%s", numtarjeta);
 			}
-			printf ("Tu numero de tarjeta es:\n\n");
 			
-			for (i = 0; i < DIM; i++) {
-			  tarjeta[i] = v[n];
-			  printf ("%d ", tarjeta[i]);
-			  n--;
+			printf ("Su numero de tarjeta se ha guardado correctamente\n\n");
+			
+			for (i = 0; i < 16; i++) {
+				
+				printf ("%c ", numtarjeta[i]);
 			}
-			printf ("\n\n");
 			
-			printf ("Sus tickets se estan imprimiendo. Gracias por confiar en GETBUS. Que tenga un buen viaje\n\n");
+			printf ("\n\nSus tickets se estan imprimiendo. Gracias por confiar en GETBUS. Que tenga un buen viaje\n\n");
 			
 			system ("Pause");
 			getchar();

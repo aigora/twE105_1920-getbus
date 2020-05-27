@@ -35,7 +35,7 @@ int numAleatorio (int a);
 
 void imprime (int v[B]);
 
-int llenaPlazas (autobuses bus, int opcion, int nplazas);
+int llenaPlazas (autobuses bus, int nplazas);
 
 float comida (autobuses bus);
 
@@ -46,9 +46,10 @@ int main () {
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
 	
-	int i = 0, j, codigo, naleatorio, contador = 0, n = DIM-1, op, nplazas, disponibles, notarjeta = 0, cont;
-	int v[DIM], tarjeta[DIM], vec[B], conf[4];
-	float precio = 0, total;
+	int i = 0, notarjeta = 0, contador = 0, j, n = DIM-1;
+	int codigo, naleatorio, op, nplazas, cont;
+	int v[DIM], tarjeta[DIM], vec[B];
+	float total;
 	unsigned long long int numtarjeta;
 	char opcion, car, nombreFich[N];
 	
@@ -155,7 +156,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*27.99; //CANTIDAD A PAGAR POR EL USUARIO (SOLO TICKETS)
 					
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont); //MODIFICO EL NUMERO DE PLAZAS LIBRES
 					
@@ -163,7 +164,7 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					total = bus[op-1].precio + comida (bus[op-1]); //LLAMADA A LA FUNCION DE SERVICIO COMPLEMENTARIO
+					total = bus[op-1].precio + comida (bus[op-1]); //LLAMADA A LA FUNCION DE SERVICIO COMPLEMENTARIO (SUMA DE TICKECTS + COMIDA)
 					
 					printf ("El total a pagar es de %.2f euros\n\n", total); 
 					
@@ -199,7 +200,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*34; 
 						
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
@@ -243,7 +244,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*34.70; 
 						
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
@@ -287,7 +288,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*28.50;
 						
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
@@ -331,7 +332,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*35.50;
 					
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
@@ -375,7 +376,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*24.20;
 						
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
@@ -419,7 +420,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*31.99;
 		
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
@@ -463,7 +464,7 @@ int main () {
 					
 					bus[op-1].precio = nplazas*29.99;
 						
-					cont = llenaPlazas (bus[op-1], op, nplazas);
+					cont = llenaPlazas (bus[op-1], nplazas);
 					
 					vec[op-1] = (vec[op-1] - cont);
 					
@@ -513,7 +514,7 @@ int main () {
 			}
 			printf ("\n\n");
 			
-			printf ("Gracias por confiar en GETBUS. Que tenga un buen viaje\n\n");
+			printf ("Sus tickets se estan imprimiendo. Gracias por confiar en GETBUS. Que tenga un buen viaje\n\n");
 			
 			system ("Pause");
 			getchar();
@@ -655,8 +656,8 @@ void registro (char op) {
 }
 
 int numAleatorio (int a) {
-	
-	int num;
+
+    int num;
 	srand (time(0)); /*GENERADOR NUMERO ALEATORIO*/
 	num = rand()%50001;
     
@@ -665,8 +666,8 @@ int numAleatorio (int a) {
 
 int compruebaRobot (int numero, int b) {
 
-	if (numero == b) 
-		return 1;
+    if (numero == b)
+	    return 1;
 	else 
 	    return 0;
 }
@@ -687,7 +688,7 @@ void imprime (int v[B]) {
 	fclose (buses);
 }
 
-void leerfichero(char nombreFich[]){
+void leerfichero (char nombreFich[]) {
 	
 	FILE *lee;
 	char texto[10][100];
@@ -727,7 +728,7 @@ void guardaplaza (int v[B]) { //ABRE EL FICHERO DE PLAZAS DE CADA BUS Y LO GUARD
 	fclose (buses);
 }
 
-int compruebaPlaza (int v[B], int opcion) {
+int compruebaPlaza (int v[B], int opcion) {  //ASEGURA QUE EL NUMERO DE PLAZAS INTRODUCIDAS NO SEA SUPERIOR AL DISPONIBLE
 	
 	int nplazas;
 	
@@ -742,7 +743,7 @@ int compruebaPlaza (int v[B], int opcion) {
    return nplazas;	
 }
 
-int compruebaBus (int v[B], int opcion) {
+int compruebaBus (int v[B], int opcion) { //COMPRUEBA SI EL BUS SE ENCUENTRA LLENO
 	
 	int lleno = 0;
 
@@ -753,7 +754,7 @@ int compruebaBus (int v[B], int opcion) {
 	return lleno;
 }
 
-int llenaPlazas (autobuses bus, int opcion, int nplazas) {
+int llenaPlazas (autobuses bus, int nplazas) { //LLENA LAS PLAZAS DEL BUS
 	
 	int i, contador = 0;
 	
@@ -772,7 +773,7 @@ int llenaPlazas (autobuses bus, int opcion, int nplazas) {
 	return contador;
 }
 
-float comida (autobuses bus) {
+float comida (autobuses bus) { //CALCULA EL COSTE DE SERVICIO DE COMIDA
 	
 	int i, eleccion, selec, num, C = 3;
 	float precioComida[C];
@@ -868,7 +869,7 @@ float comida (autobuses bus) {
 	return total;
 }
 
-float descuentos (float total, char op) {
+float descuentos (float total, char op) { //APLICA EL DESCUENTO A LA CANTIDAD TOTAL
 	
 	op = 'R'; //MODIFICAMOS LA COPIA DEL PARAMETRO PARA USO DE FUNCION REGISTRO
 	
@@ -903,7 +904,7 @@ float descuentos (float total, char op) {
 		registro (op);
 		
 		total = total*0.9;
-		printf ("Gracias por confiar en nosotros al aplicar su descuento\n\n");
+		printf ("Le agradecemos que haya confiado en nosotros al aplicar su descuento\n\n");
 	}
 	
 	else {

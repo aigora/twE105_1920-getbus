@@ -497,6 +497,7 @@ int main () {
 			
 			while (strlen (numtarjeta) != 16) {
 				
+				system ("cls");
 				printf ("ERROR. El numero introducido no tiene 16 cifras. Introduzcalo de nuevo\n\n");
 				scanf ("%s", numtarjeta);
 			}

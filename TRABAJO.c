@@ -45,10 +45,9 @@ int main () {
 	
 	/*ENCABEZADO DEL PROGRAMA*/
 	FILE *dest;
-	FILE *buses;
 	
-	int i, j, codigo, naleatorio, contador = 0, n = DIM-1, op, nplazas, fin, disponibles, notarjeta = 0, cont;
-	int v[DIM], tarjeta[DIM], vec[B];
+	int i = 0, j, codigo, naleatorio, contador = 0, n = DIM-1, op, nplazas, disponibles, notarjeta = 0, cont;
+	int v[DIM], tarjeta[DIM], vec[B], conf[4];
 	float precio = 0, total;
 	unsigned long long int numtarjeta;
 	char opcion, car, nombreFich[N];
@@ -914,4 +913,3 @@ float descuentos (float total, char op) {
 	
 	return total;
 }
-

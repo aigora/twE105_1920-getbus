@@ -1,8 +1,4 @@
 Raul Garcia 333678905
-Benito Fernandez 227890445
 Ana Rodriguez 223789066
-
-Esteban Garcia 123467892
-Adrian Gomez 789234234
-Pepe Garcia 235678904
-
+Ivan Perez 128904567
+Alicia Diaz 345678903

@@ -37,7 +37,9 @@ void imprime (int v[B]);
 
 int llenaPlazas (autobuses bus, int opcion, int nplazas);
 
-int comida (autobuses bus);
+float comida (autobuses bus);
+
+float descuentos (float total, char op);
 
 int main () {
 	
@@ -47,7 +49,7 @@ int main () {
 	
 	int i, j, codigo, naleatorio, contador = 0, n = DIM-1, op, nplazas, fin, disponibles, notarjeta = 0, cont;
 	int v[DIM], tarjeta[DIM], vec[B];
-	float precio = 0;
+	float precio = 0, total;
 	unsigned long long int numtarjeta;
 	char opcion, car, nombreFich[N];
 	
@@ -162,7 +164,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1])); //LLAMADA A LA FUNCION DE SERVICIO COMPLEMENTARIO
+					total = bus[op-1].precio + comida (bus[op-1]); //LLAMADA A LA FUNCION DE SERVICIO COMPLEMENTARIO
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total); 
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion)); //LLAMADA A LA FUNCION DESCUENTO
 					
 					fflush (stdin);
 					
@@ -202,7 +208,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1]));
+					total = bus[op-1].precio + comida (bus[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total);
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion));
 					
 					fflush (stdin);
  				    
@@ -242,7 +252,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1]));
+					total = bus[op-1].precio + comida (bus[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total);
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion));
 					
 					fflush (stdin);
 					
@@ -282,7 +296,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1]));
+					total = bus[op-1].precio + comida (bus[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total);
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion));
 					
 					fflush (stdin);
 					
@@ -322,7 +340,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1]));
+					total = bus[op-1].precio + comida (bus[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total);
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion));
 					
 					fflush (stdin);
 				
@@ -362,7 +384,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1]));
+					total = bus[op-1].precio + comida (bus[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total);
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion));
 					
 					fflush (stdin);
 						
@@ -402,7 +428,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1]));
+					total = bus[op-1].precio + comida (bus[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total);
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion));
 					
 					fflush (stdin);
 					
@@ -442,7 +472,11 @@ int main () {
 					
 					printf ("La cantidad a pagar es de %.2f euros. Quedan %d plazas\n\n", bus[op-1].precio, vec[op-1]);
 					
-					printf ("El total a pagar es de %.2f euros\n\n", bus[op-1].precio + comida (bus[op-1]));
+					total = bus[op-1].precio + comida (bus[op-1]);
+					
+					printf ("El total a pagar es de %.2f euros\n\n", total);
+					
+					printf ("La cantidad a pagar es de %.2f\n\n", descuentos (total, opcion));
 					
 					fflush (stdin);
 					
@@ -517,6 +551,7 @@ int main () {
 			system("cls");
 			/*LEE FICHERO CON LOS DESCUENTOS DISPONIBLES*/
 			leerfichero("descuentos.txt");
+			system("pause");
 			
 		    break;
 		    
@@ -525,6 +560,7 @@ int main () {
 			system("cls");
 			/*EL CLIENTE PODRA ELEGIR LOS COMPLEMENTOS QUE DESEE SEGUN LA OPCION ESCOGIDA*/
 			leerfichero("comida.txt");
+			system("pause");
 					
 			break;
 			
@@ -606,13 +642,13 @@ void registro (char op) {
 	
 	fprintf (registro, "%s", cliente.telefono);
 	
-	fprintf (registro, "\n\n");
+	fprintf (registro, "\n");
 	
 	fclose (registro);
 	
 	system("cls");
 	
-	printf("Gracias por registrarse en GETBUS. Utilizando el codigo 'BIENVENIDA' obtendra un 10 por ciento de descuento\n\n");
+	printf("Gracias por registrarse en GETBUS. Obtendra un 10 %% de descuento en el pago final\n\n");
 	
 	system("pause");
 	
@@ -652,30 +688,11 @@ void imprime (int v[B]) {
 	fclose (buses);
 }
 
-
-
-/*void leerfichero(char nombreFich[]){
-	FILE *lee;
-	char texto;
-	int contador=0;
-	lee = fopen (nombreFich, "r");
-			do {
-			  contador = fscanf(lee, "%c", &texto);
-			  printf("%c", texto);
-			}
-			while (contador != EOF);
-	
-			fclose (lee);
-			
-		system("PAUSE");
-}*/
-
-
 void leerfichero(char nombreFich[]){
 	
 	FILE *lee;
 	char texto[10][100];
-	int num[10], i=0;
+	int num[10], i = 0;
 
 	lee = fopen (nombreFich, "r");
 	
@@ -690,7 +707,6 @@ void leerfichero(char nombreFich[]){
 		}
     }
 	fclose(lee);
-
 }
 
 void guardaplaza (int v[B]) { //ABRE EL FICHERO DE PLAZAS DE CADA BUS Y LO GUARDA EN UN VECTOR
@@ -757,7 +773,7 @@ int llenaPlazas (autobuses bus, int opcion, int nplazas) {
 	return contador;
 }
 
-int comida (autobuses bus) {
+float comida (autobuses bus) {
 	
 	int i, eleccion, selec, num, C = 3;
 	float precioComida[C];
@@ -780,6 +796,9 @@ int comida (autobuses bus) {
 			precioComida[i] = 5;  //SANDWICH
 		}
 	}
+	
+	system ("pause");
+	system("cls");
 	
 	printf ("Si desea consumir alguno de nuestros articulos pulse 1. En caso contrario pulse 2\n\n");
 	
@@ -847,6 +866,52 @@ int comida (autobuses bus) {
 		
 		printf ("Sentimos que no desee consumir nada durante el viaje. A continuacion comienza el proceso de pago\n\n");
 	}
+	return total;
+}
+
+float descuentos (float total, char op) {
+	
+	op = 'R'; //MODIFICAMOS LA COPIA DEL PARAMETRO PARA USO DE FUNCION REGISTRO
+	
+	int eleccion, naleatorio, codigo;
+	
+	system ("pause");
+	system("cls");
+	
+	printf ("Desea obtener descuento del 10%%? Para ello debe registrarse. 1 - Afirmativo. Otra tecla en caso contrario\n\n");
+	
+	scanf ("%d", &eleccion);
+	getchar();
+	fflush (stdin);
+	
+	if (eleccion == 1) {
+		
+		naleatorio = numAleatorio(1);
+		printf ("Verificacion de codigo: %d\n\n", naleatorio);
+		scanf ("%d", &codigo);
+		getchar();
+		fflush (stdin);
+		
+		system("cls");
+		
+		while (compruebaRobot (codigo, naleatorio) != 1) {
+		
+		    printf ("Introduce de nuevo el codigo: %d\n\n");
+			scanf ("%d", &codigo);
+			getchar();
+		}
+			
+		registro (op);
+		
+		total = total*0.9;
+		printf ("Gracias por confiar en nosotros al aplicar su descuento\n\n");
+	}
+	
+	else {
+		
+		printf ("Sentimos que no desee ningun descuento\n\n");
+	}
+	
 	return total;
 }
 
